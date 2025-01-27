@@ -1,0 +1,732 @@
+{
+  "methods": {
+    "get_vault": {
+      "argument": "empty.get_vault_args",
+      "return": "empty.vaultbalances",
+      "description": "Get balances of a vault",
+      "entry_point": 2899174343,
+      "read_only": true,
+      "entry-point": "0xaccde3c7",
+      "read-only": true
+    },
+    "deposit": {
+      "argument": "empty.deposit_args",
+      "return": "",
+      "description": "Deposit KOIN as collateral",
+      "entry_point": 3283745656,
+      "read_only": false,
+      "entry-point": "0xc3b9fb78",
+      "read-only": false
+    },
+    "withdraw": {
+      "argument": "empty.withdraw_args",
+      "return": "",
+      "description": "Withdraw collateral from a vault",
+      "entry_point": 3262063323,
+      "read_only": false,
+      "entry-point": "0xc26f22db",
+      "read-only": false
+    },
+    "mint_kusdg": {
+      "argument": "empty.mint_args",
+      "return": "",
+      "description": "Mint KUSDG",
+      "entry_point": 2765861878,
+      "read_only": false,
+      "entry-point": "0xa4dbb3f6",
+      "read-only": false
+    },
+    "repay_kusdg": {
+      "argument": "empty.repay_args",
+      "return": "",
+      "description": "Repay KUSDG",
+      "entry_point": 2247361946,
+      "read_only": false,
+      "entry-point": "0x85f4059a",
+      "read-only": false
+    },
+    "liquidate": {
+      "argument": "empty.liquidate_args",
+      "return": "",
+      "description": "Liquidate a vault",
+      "entry_point": 3168193652,
+      "read_only": false,
+      "entry-point": "0xbcd6cc74",
+      "read-only": false
+    },
+    "name": {
+      "argument": "",
+      "return": "token.str",
+      "description": "Get name of the token",
+      "entry_point": 2191741823,
+      "read_only": true,
+      "entry-point": "0x82a3537f",
+      "read-only": true
+    },
+    "symbol": {
+      "argument": "",
+      "return": "token.str",
+      "description": "Get the symbol of the token",
+      "entry_point": 3077209249,
+      "read_only": true,
+      "entry-point": "0xb76a7ca1",
+      "read-only": true
+    },
+    "decimals": {
+      "argument": "",
+      "return": "token.uint32",
+      "description": "Get the decimals of the token",
+      "entry_point": 4001430831,
+      "read_only": true,
+      "entry-point": "0xee80fd2f",
+      "read-only": true
+    },
+    "get_info": {
+      "argument": "",
+      "return": "token.info",
+      "description": "Get name, symbol and decimals",
+      "entry_point": 3179243600,
+      "read_only": true,
+      "entry-point": "0xbd7f6850",
+      "read-only": true
+    },
+    "total_supply": {
+      "argument": "",
+      "return": "token.uint64",
+      "description": "Get total supply",
+      "entry_point": 2967091508,
+      "read_only": true,
+      "entry-point": "0xb0da3934",
+      "read-only": true
+    },
+    "balance_of": {
+      "argument": "token.balance_of_args",
+      "return": "token.uint64",
+      "description": "Get balance of an account",
+      "entry_point": 1550980247,
+      "read_only": true,
+      "entry-point": "0x5c721497",
+      "read-only": true
+    },
+    "allowance": {
+      "argument": "token.allowance_args",
+      "return": "token.uint64",
+      "description": "Get allowance",
+      "entry_point": 854630305,
+      "read_only": true,
+      "entry-point": "0x32f09fa1",
+      "read-only": true
+    },
+    "get_allowances": {
+      "argument": "token.get_allowances_args",
+      "return": "token.get_allowances_return",
+      "description": "Get allowances of an account",
+      "entry_point": 2409718870,
+      "read_only": true,
+      "entry-point": "0x8fa16456",
+      "read-only": true
+    },
+    "approve": {
+      "argument": "token.approve_args",
+      "return": "",
+      "description": "Grant permissions to other account to manage the tokens owned by the user. The user must approve only the accounts he trust.",
+      "entry_point": 1960973952,
+      "read_only": false,
+      "entry-point": "0x74e21680",
+      "read-only": false
+    },
+    "transfer": {
+      "argument": "token.transfer_args",
+      "return": "",
+      "description": "Transfer tokens",
+      "entry_point": 670398154,
+      "read_only": false,
+      "entry-point": "0x27f576ca",
+      "read-only": false
+    },
+    "mint": {
+      "argument": "token.mint_args",
+      "return": "",
+      "description": "Mint new tokens",
+      "entry_point": 3698268091,
+      "read_only": false,
+      "entry-point": "0xdc6f17bb",
+      "read-only": false
+    }
+  },
+  "types": "CsoHCgtlbXB0eS5wcm90bxIFZW1wdHkaFGtvaW5vcy9vcHRpb25zLnByb3RvIhsKA3N0chIUCgV2YWx1ZRgBIAEoCVIFdmFsdWUiHgoGdWludDY0EhQKBXZhbHVlGAEgASgEUgV2YWx1ZSJHCg12YXVsdGJhbGFuY2VzEhYKBGtvaW4YASABKARCAjABUgRrb2luEh4KCGt1c2Rnb2xkGAIgASgEQgIwAVIIa3VzZGdvbGQiLAoOZ2V0X3ZhdWx0X2FyZ3MSGgoFb3duZXIYASABKAxCBIC1GAZSBW93bmVyIoMBCgxkZXBvc2l0X2FyZ3MSHgoHYWNjb3VudBgBIAEoDEIEgLUYBlIHYWNjb3VudBIaCgZhbW91bnQYAiABKARCAjABUgZhbW91bnQSEAoDZmVlGAMgASgNUgNmZWUSJQoLZmVlX2FkZHJlc3MYBCABKAxCBIC1GAZSCmZlZUFkZHJlc3MiSwoNd2l0aGRyYXdfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBmFtb3VudBgCIAEoBEICMAFSBmFtb3VudCJHCgltaW50X2FyZ3MSHgoHYWNjb3VudBgBIAEoDEIEgLUYBlIHYWNjb3VudBIaCgZhbW91bnQYAiABKARCAjABUgZhbW91bnQiXAoKcmVwYXlfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhIKBHR5cGUYAiABKA1SBHR5cGUSGgoGYW1vdW50GAMgASgEQgIwAVIGYW1vdW50IkwKDmxpcXVpZGF0ZV9hcmdzEh4KB2FjY291bnQYASABKAxCBIC1GAZSB2FjY291bnQSGgoFdmF1bHQYAiABKAxCBIC1GAZSBXZhdWx0IgwKCnJhdGlvX2FyZ3MiggEKDHJhdGlvX3Jlc3VsdBIVCgZrX2xhc3QYASABKAlSBWtMYXN0EhsKB3Rva2VuX2EYAiABKARCAjABUgZ0b2tlbkESGwoHdG9rZW5fYhgDIAEoBEICMAFSBnRva2VuQhIhCgpibG9ja190aW1lGAQgASgEQgIwAVIJYmxvY2tUaW1lIjsKDmdldF9wcmljZV9hcmdzEikKDXRva2VuX2FkZHJlc3MYASABKAxCBIC1GAVSDHRva2VuQWRkcmVzcyJKCgxwcmljZV9vYmplY3QSGAoFcHJpY2UYASABKARCAjABUgVwcmljZRIgCgl0aW1lc3RhbXAYAiABKARCAjABUgl0aW1lc3RhbXBiBnByb3RvMwqJCwoha29pbm9zYm94LXByb3RvL3Rva2VuL3Rva2VuLnByb3RvEgV0b2tlbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSJwCgRpbmZvEhIKBG5hbWUYASABKAlSBG5hbWUSFgoGc3ltYm9sGAIgASgJUgZzeW1ib2wSGgoIZGVjaW1hbHMYAyABKA1SCGRlY2ltYWxzEiAKC2Rlc2NyaXB0aW9uGAQgASgJUgtkZXNjcmlwdGlvbiItCg9iYWxhbmNlX29mX2FyZ3MSGgoFb3duZXIYASABKAxCBIC1GAZSBW93bmVyIm0KDXRyYW5zZmVyX2FyZ3MSGAoEZnJvbRgBIAEoDEIEgLUYBlIEZnJvbRIUCgJ0bxgCIAEoDEIEgLUYBlICdG8SGAoFdmFsdWUYAyABKARCAjABUgV2YWx1ZRISCgRtZW1vGAQgASgJUgRtZW1vIjsKCW1pbnRfYXJncxIUCgJ0bxgBIAEoDEIEgLUYBlICdG8SGAoFdmFsdWUYAiABKARCAjABUgV2YWx1ZSI/CglidXJuX2FyZ3MSGAoEZnJvbRgBIAEoDEIEgLUYBlIEZnJvbRIYCgV2YWx1ZRgCIAEoBEICMAFSBXZhbHVlImQKDGFwcHJvdmVfYXJncxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISHgoHc3BlbmRlchgCIAEoDEIEgLUYBlIHc3BlbmRlchIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlIkwKDmFsbG93YW5jZV9hcmdzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIeCgdzcGVuZGVyGAIgASgMQgSAtRgGUgdzcGVuZGVyIoMBChNnZXRfYWxsb3dhbmNlc19hcmdzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIaCgVzdGFydBgCIAEoDEIEgLUYBlIFc3RhcnQSFAoFbGltaXQYAyABKAVSBWxpbWl0Eh4KCmRlc2NlbmRpbmcYBCABKAhSCmRlc2NlbmRpbmciSQoNc3BlbmRlcl92YWx1ZRIeCgdzcGVuZGVyGAEgASgMQgSAtRgGUgdzcGVuZGVyEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiaQoVZ2V0X2FsbG93YW5jZXNfcmV0dXJuEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchI0CgphbGxvd2FuY2VzGAIgAygLMhQudG9rZW4uc3BlbmRlcl92YWx1ZVIKYWxsb3dhbmNlcyJaCg50cmFuc2Zlcl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhQKAnRvGAIgASgMQgSAtRgGUgJ0bxIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlIjwKCm1pbnRfZXZlbnQSFAoCdG8YASABKAxCBIC1GAZSAnRvEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiQAoKYnVybl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiZQoNYXBwcm92ZV9ldmVudBIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISHgoHc3BlbmRlchgCIAEoDEIEgLUYBlIHc3BlbmRlchIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlYgZwcm90bzM=",
+  "koilib_types": {
+    "nested": {
+      "empty": {
+        "nested": {
+          "str": {
+            "fields": {
+              "value": {
+                "type": "string",
+                "id": 1
+              }
+            }
+          },
+          "uint64": {
+            "fields": {
+              "value": {
+                "type": "uint64",
+                "id": 1
+              }
+            }
+          },
+          "vaultbalances": {
+            "fields": {
+              "koin": {
+                "type": "uint64",
+                "id": 1,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              },
+              "kusdgold": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "get_vault_args": {
+            "fields": {
+              "owner": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              }
+            }
+          },
+          "deposit_args": {
+            "fields": {
+              "account": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "amount": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              },
+              "fee": {
+                "type": "uint32",
+                "id": 3
+              },
+              "fee_address": {
+                "type": "bytes",
+                "id": 4,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              }
+            }
+          },
+          "withdraw_args": {
+            "fields": {
+              "account": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "amount": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "mint_args": {
+            "fields": {
+              "account": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "amount": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "repay_args": {
+            "fields": {
+              "account": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "type": {
+                "type": "uint32",
+                "id": 2
+              },
+              "amount": {
+                "type": "uint64",
+                "id": 3,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "liquidate_args": {
+            "fields": {
+              "account": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "vault": {
+                "type": "bytes",
+                "id": 2,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              }
+            }
+          },
+          "ratio_args": {
+            "fields": {}
+          },
+          "ratio_result": {
+            "fields": {
+              "k_last": {
+                "type": "string",
+                "id": 1
+              },
+              "token_a": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              },
+              "token_b": {
+                "type": "uint64",
+                "id": 3,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              },
+              "block_time": {
+                "type": "uint64",
+                "id": 4,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "get_price_args": {
+            "fields": {
+              "token_address": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "CONTRACT_ID"
+                }
+              }
+            }
+          },
+          "price_object": {
+            "fields": {
+              "price": {
+                "type": "uint64",
+                "id": 1,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              },
+              "timestamp": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          }
+        }
+      },
+      "koinos": {
+        "options": {
+          "go_package": "github.com/koinos/koinos-proto-golang/koinos"
+        },
+        "nested": {
+          "bytes_type": {
+            "values": {
+              "BASE64": 0,
+              "BASE58": 1,
+              "HEX": 2,
+              "BLOCK_ID": 3,
+              "TRANSACTION_ID": 4,
+              "CONTRACT_ID": 5,
+              "ADDRESS": 6
+            }
+          },
+          "_btype": {
+            "oneof": [
+              "btype"
+            ]
+          },
+          "btype": {
+            "type": "bytes_type",
+            "id": 50000,
+            "extend": "google.protobuf.FieldOptions",
+            "options": {
+              "proto3_optional": true
+            }
+          }
+        }
+      },
+      "token": {
+        "nested": {
+          "str": {
+            "fields": {
+              "value": {
+                "type": "string",
+                "id": 1
+              }
+            }
+          },
+          "uint32": {
+            "fields": {
+              "value": {
+                "type": "uint32",
+                "id": 1
+              }
+            }
+          },
+          "uint64": {
+            "fields": {
+              "value": {
+                "type": "uint64",
+                "id": 1,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "boole": {
+            "fields": {
+              "value": {
+                "type": "bool",
+                "id": 1
+              }
+            }
+          },
+          "info": {
+            "fields": {
+              "name": {
+                "type": "string",
+                "id": 1
+              },
+              "symbol": {
+                "type": "string",
+                "id": 2
+              },
+              "decimals": {
+                "type": "uint32",
+                "id": 3
+              },
+              "description": {
+                "type": "string",
+                "id": 4
+              }
+            }
+          },
+          "balance_of_args": {
+            "fields": {
+              "owner": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              }
+            }
+          },
+          "transfer_args": {
+            "fields": {
+              "from": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "to": {
+                "type": "bytes",
+                "id": 2,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "value": {
+                "type": "uint64",
+                "id": 3,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              },
+              "memo": {
+                "type": "string",
+                "id": 4
+              }
+            }
+          },
+          "mint_args": {
+            "fields": {
+              "to": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "value": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "burn_args": {
+            "fields": {
+              "from": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "value": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "approve_args": {
+            "fields": {
+              "owner": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "spender": {
+                "type": "bytes",
+                "id": 2,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "value": {
+                "type": "uint64",
+                "id": 3,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "allowance_args": {
+            "fields": {
+              "owner": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "spender": {
+                "type": "bytes",
+                "id": 2,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              }
+            }
+          },
+          "get_allowances_args": {
+            "fields": {
+              "owner": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "start": {
+                "type": "bytes",
+                "id": 2,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "limit": {
+                "type": "int32",
+                "id": 3
+              },
+              "descending": {
+                "type": "bool",
+                "id": 4
+              }
+            }
+          },
+          "spender_value": {
+            "fields": {
+              "spender": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "value": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "get_allowances_return": {
+            "fields": {
+              "owner": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "allowances": {
+                "rule": "repeated",
+                "type": "spender_value",
+                "id": 2
+              }
+            }
+          },
+          "transfer_event": {
+            "fields": {
+              "from": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "to": {
+                "type": "bytes",
+                "id": 2,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "value": {
+                "type": "uint64",
+                "id": 3,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "mint_event": {
+            "fields": {
+              "to": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "value": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "burn_event": {
+            "fields": {
+              "from": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "value": {
+                "type": "uint64",
+                "id": 2,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "approve_event": {
+            "fields": {
+              "owner": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "spender": {
+                "type": "bytes",
+                "id": 2,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
+                }
+              },
+              "value": {
+                "type": "uint64",
+                "id": 3,
+                "options": {
+                  "jstype": "JS_STRING"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
