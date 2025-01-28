@@ -8,6 +8,22 @@ import { IToken as Token } from "@koinosbox/contracts";
 export class KusdGold extends Token {
 
   /**
+ * Get a list of all vaults
+ * @external
+ * @readonly
+ */
+  get_vaults(args: empty.list_args): empty.addresses {
+    const argsBuffer = Protobuf.encode(args, empty.list_args.encode);
+    const callRes = System.call(this._contractId, 0x23f83d39, argsBuffer);
+    if (callRes.code != 0) {
+      const errorMessage = `failed to call 'KusdGold.get_vaults': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
+    }
+    if (!callRes.res.object) return new empty.addresses();
+    return Protobuf.decode<empty.addresses>(callRes.res.object, empty.addresses.decode);
+  }
+
+  /**
  * Get balances of a vault
  * @external
  * @readonly

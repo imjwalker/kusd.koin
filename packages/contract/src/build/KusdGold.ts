@@ -1,20 +1,21 @@
 // SPDX-License-Identifier: MIT
 
-import { System, Storage, Protobuf, Base58, authority } from "@koinos/sdk-as";
+import { System, Storage, Base58, authority } from "@koinos/sdk-as";
 import { Token as Base } from "@koinos/sdk-as";
-import { System2, Token, common, token } from "@koinosbox/contracts";
+import { Token, token } from "@koinosbox/contracts";
 import { empty } from "./proto/empty";
 import { ExternalContract as Extc } from "./ExternalContract";
 import { multiplyAndDivide } from "@koinosbox/contracts/assembly/vapor/utils";
 
 const VAULTS_SPACE_ID = 4;
 
+// KUSD Gold contract address on Harbinger: 166BxNmWGuZHYAVHCeh6D8i7XF5qX21kGT
+
 // TESTNET CONTRACT
-// Random token contract I uploaded. You can freely mint tokens
-const koinContract = new Base(Base58.decode("1PWNYq8aF6rcKd4of59FEeSEKmYifCyoJc"));
+const koinContract = new Base(Base58.decode("1PWNYq8aF6rcKd4of59FEeSEKmYifCyoJc")); // Random token contract I uploaded. You can freely mint tokens
 
 // KoinDX pool contract
-const koinUsdt = new Extc(Base58.decode("1JNfiwk1QT4Ao4bu1YrTD7rEiQoTPXKnZ6")); // Koin VHP contract to test
+const koinUsdt = new Extc(Base58.decode("1JNfiwk1QT4Ao4bu1YrTD7rEiQoTPXKnZ6")); // Koin/VHP contract to test
 
 // KAP USD oracle (MEXC price)
 const KAPusd = new Extc(Base58.decode("13PXvxWLMyi4dAd6uS1SehNNFryvFyygnD")); // test contract with price object
@@ -22,7 +23,6 @@ const KAPusd = new Extc(Base58.decode("13PXvxWLMyi4dAd6uS1SehNNFryvFyygnD")); //
 /* 
 // MAINNET CONTRACTS
 const koinContract = new Base(Base58.decode("15DJN4a8SgrbGhhGksSBASiSYjGnMU8dGL"));
-const ethContract = new Base(Base58.decode("15twURbNdh6S7GVXhqVs6MoZAhCfDSdoyd"));
 
 // KoinDX contracts
 const koinUsdt = new Etc(Base58.decode("1M9VoAHN3MdvwHnUotgk8GBVjCnXYepWbk"));
@@ -46,6 +46,17 @@ export class KusdGold extends Token {
     empty.vaultbalances.encode,
     () => new empty.vaultbalances()
   );
+
+  /**
+ * Get a list of all vaults
+ * @external
+ * @readonly
+ */  
+  get_vaults(args: empty.list_args): empty.addresses {
+    const direction = args.direction == empty.direction.ascending ? Storage.Direction.Ascending : Storage.Direction.Descending;
+    const accounts = this.vaults.getManyKeys(args.start ? args.start! : new Uint8Array(0), args.limit, direction);
+    return new empty.addresses(accounts);
+  }
 
   /**
  * Get balances of a vault
@@ -103,7 +114,7 @@ export class KusdGold extends Token {
       koinContract.transfer(this.contractId, cSigner, toWithdraw);
       this.vaults.put(cSigner, vaultBalance);
     } else {
-      throw new Error("Exceeding withdrawal amount, collateral value would fall too low");
+      throw new Error("Exceeding withdrawal amount, collateral value would fall below 110% threshold");
     }
   }
 
@@ -122,7 +133,7 @@ export class KusdGold extends Token {
       this.vaults.put(cSigner, vaultBalance);
       this._mint(new token.mint_args(cSigner, args.amount));
     } else {
-      throw new Error("Exceeds allowed amount to mint, healthratio of vault would fall below 110%.");
+      throw new Error("Exceeds allowed amount to mint, collateral value would fall below 110% threshold");
     }
   }
 
@@ -130,16 +141,16 @@ export class KusdGold extends Token {
    * Get KAP price oracle for KOIN
    */
   get_KAP_price(): empty.price_object {
-    return KAPusd.get_price(new empty.get_price_args(Base58.decode("13PXvxWLMyi4dAd6uS1SehNNFryvFyygnD"))); // adjust for mainnet
+    return KAPusd.get_price(new empty.get_price_args(Base58.decode("1Mzp89UMsSh6Fiy4ZEVvTKsmxUYpoJ3emH"))); // KOIN contract address comes here
   }
 
   /**
    * Calculate the total USD value of KOIN
    */
   kusdg_usd(args: empty.vaultbalances): empty.uint64 {
-    // compare the KOIN price of KOINDX and the KAP USD oracle, use the highest one.
+    // compare the KOIN price of KOINDX and the KAP USD oracle, use the highest price.
     const KAP_price: u64 = this.get_KAP_price().price;
-    const KOINDX_price: u64 = koinUsdt.ratio().token_b / koinUsdt.ratio().token_a;
+    const KOINDX_price: u64 = multiplyAndDivide(koinUsdt.ratio().token_b, koinUsdt.ratio().token_a, 100000000);
     let koin_price: u64;
     (KAP_price > KOINDX_price) ? koin_price = KAP_price : koin_price = KOINDX_price;
     let totalCollateralValue: u64 = 0;
@@ -175,7 +186,7 @@ export class KusdGold extends Token {
  */
   liquidate(args: empty.liquidate_args): void {
     if (!this.vaults.get(args.account!)) {
-      throw new Error("To liquidate you must have a vault open");
+      throw new Error("To liquidate you must have an open vault");
     }
     const vb = this.vaults.get(args.vault!)!;
     let vaultBalance: empty.vaultbalances = this.vaults.get(args.account!)!;
@@ -187,7 +198,7 @@ export class KusdGold extends Token {
       this.vaults.put(args.account!, vaultBalance);
       this.vaults.remove(args.vault!);
     } else {
-      throw new Error("Vault not below liquidation threshold, liquidation not possible.");
+      throw new Error("Vault not below liquidation threshold");
     }
   }
 }

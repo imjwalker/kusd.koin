@@ -10,6 +10,14 @@ let returnBuffer = new Uint8Array(1024);
 switch (contract.callArgs!.entry_point) {
   /* class KusdGold */
     
+  // get_vaults
+  case 0x23f83d39: {
+    const args = Protobuf.decode<empty.list_args>(contract.callArgs!.args, empty.list_args.decode);
+    const result = contract.get_vaults(args);
+    returnBuffer = Protobuf.encode(result, empty.addresses.encode);
+    break;
+  }
+
   // get_vault
   case 0xaccde3c7: {
     const args = Protobuf.decode<empty.get_vault_args>(contract.callArgs!.args, empty.get_vault_args.decode);

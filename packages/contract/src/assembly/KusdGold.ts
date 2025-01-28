@@ -9,6 +9,8 @@ import { multiplyAndDivide } from "@koinosbox/contracts/assembly/vapor/utils";
 
 const VAULTS_SPACE_ID = 4;
 
+// KUSD Gold contract address on Harbinger: 166BxNmWGuZHYAVHCeh6D8i7XF5qX21kGT
+
 // TESTNET CONTRACT
 const koinContract = new Base(Base58.decode("1PWNYq8aF6rcKd4of59FEeSEKmYifCyoJc")); // Random token contract I uploaded. You can freely mint tokens
 
@@ -44,6 +46,17 @@ export class KusdGold extends Token {
     empty.vaultbalances.encode,
     () => new empty.vaultbalances()
   );
+
+  /**
+ * Get a list of all vaults
+ * @external
+ * @readonly
+ */  
+  get_vaults(args: empty.list_args): empty.addresses {
+    const direction = args.direction == empty.direction.ascending ? Storage.Direction.Ascending : Storage.Direction.Descending;
+    const accounts = this.vaults.getManyKeys(args.start ? args.start! : new Uint8Array(0), args.limit, direction);
+    return new empty.addresses(accounts);
+  }
 
   /**
  * Get balances of a vault

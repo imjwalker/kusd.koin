@@ -120,6 +120,106 @@ export namespace empty {
     }
   }
 
+  export class list_args {
+    static encode(message: list_args, writer: Writer): void {
+      const unique_name_start = message.start;
+      if (unique_name_start !== null) {
+        writer.uint32(10);
+        writer.bytes(unique_name_start);
+      }
+
+      if (message.limit != 0) {
+        writer.uint32(16);
+        writer.int32(message.limit);
+      }
+
+      if (message.direction != 0) {
+        writer.uint32(24);
+        writer.int32(message.direction);
+      }
+    }
+
+    static decode(reader: Reader, length: i32): list_args {
+      const end: usize = length < 0 ? reader.end : reader.ptr + length;
+      const message = new list_args();
+
+      while (reader.ptr < end) {
+        const tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.start = reader.bytes();
+            break;
+
+          case 2:
+            message.limit = reader.int32();
+            break;
+
+          case 3:
+            message.direction = reader.int32();
+            break;
+
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+
+      return message;
+    }
+
+    start: Uint8Array | null;
+    limit: i32;
+    direction: direction;
+
+    constructor(
+      start: Uint8Array | null = null,
+      limit: i32 = 0,
+      direction: direction = 0
+    ) {
+      this.start = start;
+      this.limit = limit;
+      this.direction = direction;
+    }
+  }
+
+  export class addresses {
+    static encode(message: addresses, writer: Writer): void {
+      const unique_name_accounts = message.accounts;
+      if (unique_name_accounts.length !== 0) {
+        for (let i = 0; i < unique_name_accounts.length; ++i) {
+          writer.uint32(10);
+          writer.bytes(unique_name_accounts[i]);
+        }
+      }
+    }
+
+    static decode(reader: Reader, length: i32): addresses {
+      const end: usize = length < 0 ? reader.end : reader.ptr + length;
+      const message = new addresses();
+
+      while (reader.ptr < end) {
+        const tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.accounts.push(reader.bytes());
+            break;
+
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+
+      return message;
+    }
+
+    accounts: Array<Uint8Array>;
+
+    constructor(accounts: Array<Uint8Array> = []) {
+      this.accounts = accounts;
+    }
+  }
+
   export class get_vault_args {
     static encode(message: get_vault_args, writer: Writer): void {
       const unique_name_owner = message.owner;
@@ -616,5 +716,10 @@ export namespace empty {
       this.price = price;
       this.timestamp = timestamp;
     }
+  }
+
+  export enum direction {
+    ascending = 0,
+    descending = 1,
   }
 }
