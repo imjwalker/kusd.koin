@@ -13,7 +13,7 @@ const VAULTS_SPACE_ID = 4;
 
 // TESTNET CONTRACTS
 // Random token contract (placeholder). Freely mint tokens (in range of uint64) 
-const koinContract = new Base(Base58.decode("1PWNYq8aF6rcKd4of59FEeSEKmYifCyoJc")); // second stable
+const koinContract = new Base(Base58.decode("1PWNYq8aF6rcKd4of59FEeSEKmYifCyoJc"));
 
 // KoinDX pool contract (placeholder)
 const koinUsdt = new Extc(Base58.decode("1JNfiwk1QT4Ao4bu1YrTD7rEiQoTPXKnZ6"));
@@ -169,7 +169,7 @@ export class KusdGold extends Token {
     // on mainnet compare the KOIN price of KOINDX and the KAP USD oracle and use the highest one
     const KAP_price: u64 = this.get_KAP_price().price; // 0.1892
     const KOINDX_price: u64 = this.get_KAP_price().price;
-    // On mainnet, get the KoinDX trading pool reserves instead:
+    // On mainnet, get the KoinDX trading pool reserves instead: br
     // const KOINDX_price: u64 = multiplyAndDivide(koinUsdt.ratio().token_b, 100000000, koinUsdt.ratio().token_a);
     
     let koin_price: u64 = KAP_price;
