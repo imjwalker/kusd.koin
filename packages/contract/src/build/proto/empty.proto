@@ -12,9 +12,17 @@ message uint64 {
    uint64 value = 1;
 }
 
-message vaultbalances {
+message kg_vaultbalances {
    uint64 koin = 1 [jstype = JS_STRING];
    uint64 kusdgold = 2 [jstype = JS_STRING];
+}
+
+message kg_protocol_balances {
+   repeated kg_vaultbalances kvb = 1;
+}
+
+message kg_get_vault_args {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
 }
 
 message list_args {
@@ -32,18 +40,14 @@ enum direction {
    descending = 1;
 }
 
-message get_vault_args {
-   bytes owner = 1 [(koinos.btype) = ADDRESS];
-}
-
-message deposit_args {
+message kg_deposit_args {
    bytes account = 1 [(koinos.btype) = ADDRESS];
    uint64 amount = 2 [jstype = JS_STRING];
    uint32 fee = 3;
    bytes fee_address = 4 [(koinos.btype) = ADDRESS];
 }
 
-message withdraw_args {
+message kg_withdraw_args {
    bytes account = 1 [(koinos.btype) = ADDRESS];
    uint64 amount = 2 [jstype = JS_STRING];
 }
@@ -55,16 +59,13 @@ message mint_args {
 
 message repay_args {
    bytes account = 1 [(koinos.btype) = ADDRESS];
-   uint32 type = 2;
-   uint64 amount = 3 [jstype = JS_STRING];
+   uint64 amount = 2 [jstype = JS_STRING];
 }
 
 message liquidate_args {
    bytes account = 1 [(koinos.btype) = ADDRESS];
    bytes vault = 2 [(koinos.btype) = ADDRESS];
 }
-
-
 
 message ratio_args {
    

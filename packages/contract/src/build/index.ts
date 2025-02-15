@@ -10,58 +10,74 @@ let returnBuffer = new Uint8Array(1024);
 switch (contract.callArgs!.entry_point) {
   /* class KusdGold */
     
-  // get_vaults
-  case 0x23f83d39: {
+  // kg_get_vaults
+  case 0xf598cebe: {
     const args = Protobuf.decode<empty.list_args>(contract.callArgs!.args, empty.list_args.decode);
-    const result = contract.get_vaults(args);
+    const result = contract.kg_get_vaults(args);
     returnBuffer = Protobuf.encode(result, empty.addresses.encode);
     break;
   }
 
-  // get_vault
-  case 0xaccde3c7: {
-    const args = Protobuf.decode<empty.get_vault_args>(contract.callArgs!.args, empty.get_vault_args.decode);
-    const result = contract.get_vault(args);
-    returnBuffer = Protobuf.encode(result, empty.vaultbalances.encode);
+  // kg_get_balances
+  case 0xfc6f58c3: {
+    const args = Protobuf.decode<empty.list_args>(contract.callArgs!.args, empty.list_args.decode);
+    const result = contract.kg_get_balances(args);
+    returnBuffer = Protobuf.encode(result, empty.kg_protocol_balances.encode);
     break;
   }
 
-  // deposit
-  case 0xc3b9fb78: {
-    const args = Protobuf.decode<empty.deposit_args>(contract.callArgs!.args, empty.deposit_args.decode);
-    contract.deposit(args);
+  // kg_get_vault
+  case 0xe9ffe0e5: {
+    const args = Protobuf.decode<empty.kg_get_vault_args>(contract.callArgs!.args, empty.kg_get_vault_args.decode);
+    const result = contract.kg_get_vault(args);
+    returnBuffer = Protobuf.encode(result, empty.kg_vaultbalances.encode);
+    break;
+  }
+
+  // kg_deposit
+  case 0x3e34fa85: {
+    const args = Protobuf.decode<empty.kg_deposit_args>(contract.callArgs!.args, empty.kg_deposit_args.decode);
+    contract.kg_deposit(args);
     returnBuffer = new Uint8Array(0);
     break;
   }
 
-  // withdraw
-  case 0xc26f22db: {
-    const args = Protobuf.decode<empty.withdraw_args>(contract.callArgs!.args, empty.withdraw_args.decode);
-    contract.withdraw(args);
+  // kg_withdraw
+  case 0x38277a29: {
+    const args = Protobuf.decode<empty.kg_withdraw_args>(contract.callArgs!.args, empty.kg_withdraw_args.decode);
+    contract.kg_withdraw(args);
     returnBuffer = new Uint8Array(0);
     break;
   }
 
-  // mint_kusdg
-  case 0xa4dbb3f6: {
+  // kg_mint
+  case 0x182ef922: {
     const args = Protobuf.decode<empty.mint_args>(contract.callArgs!.args, empty.mint_args.decode);
-    contract.mint_kusdg(args);
+    contract.kg_mint(args);
     returnBuffer = new Uint8Array(0);
     break;
   }
 
-  // repay_kusdg
-  case 0x85f4059a: {
+  // kg_usd
+  case 0x03cfb712: {
+    const args = Protobuf.decode<empty.kg_vaultbalances>(contract.callArgs!.args, empty.kg_vaultbalances.decode);
+    const result = contract.kg_usd(args);
+    returnBuffer = Protobuf.encode(result, empty.uint64.encode);
+    break;
+  }
+
+  // kg_repay
+  case 0x6a2e1b56: {
     const args = Protobuf.decode<empty.repay_args>(contract.callArgs!.args, empty.repay_args.decode);
-    contract.repay_kusdg(args);
+    contract.kg_repay(args);
     returnBuffer = new Uint8Array(0);
     break;
   }
 
-  // liquidate
-  case 0xbcd6cc74: {
+  // kg_liquidate
+  case 0xdca281ec: {
     const args = Protobuf.decode<empty.liquidate_args>(contract.callArgs!.args, empty.liquidate_args.decode);
-    contract.liquidate(args);
+    contract.kg_liquidate(args);
     returnBuffer = new Uint8Array(0);
     break;
   }

@@ -1,66 +1,84 @@
 {
   "methods": {
-    "get_vaults": {
+    "kg_get_vaults": {
       "argument": "empty.list_args",
       "return": "empty.addresses",
-      "description": "Get a list of all vaults",
-      "entry_point": 603471161,
+      "description": "Get a list of all vault addresses",
+      "entry_point": 4120432318,
       "read_only": true,
-      "entry-point": "0x23f83d39",
+      "entry-point": "0xf598cebe",
       "read-only": true
     },
-    "get_vault": {
-      "argument": "empty.get_vault_args",
-      "return": "empty.vaultbalances",
+    "kg_get_balances": {
+      "argument": "empty.list_args",
+      "return": "empty.kg_protocol_balances",
+      "description": "Get a list of all vault balances",
+      "entry_point": 4235155651,
+      "read_only": true,
+      "entry-point": "0xfc6f58c3",
+      "read-only": true
+    },
+    "kg_get_vault": {
+      "argument": "empty.kg_get_vault_args",
+      "return": "empty.kg_vaultbalances",
       "description": "Get balances of a vault",
-      "entry_point": 2899174343,
+      "entry_point": 3925860581,
       "read_only": true,
-      "entry-point": "0xaccde3c7",
+      "entry-point": "0xe9ffe0e5",
       "read-only": true
     },
-    "deposit": {
-      "argument": "empty.deposit_args",
+    "kg_deposit": {
+      "argument": "empty.kg_deposit_args",
       "return": "",
       "description": "Deposit KOIN as collateral",
-      "entry_point": 3283745656,
+      "entry_point": 1043659397,
       "read_only": false,
-      "entry-point": "0xc3b9fb78",
+      "entry-point": "0x3e34fa85",
       "read-only": false
     },
-    "withdraw": {
-      "argument": "empty.withdraw_args",
+    "kg_withdraw": {
+      "argument": "empty.kg_withdraw_args",
       "return": "",
       "description": "Withdraw collateral from a vault",
-      "entry_point": 3262063323,
+      "entry_point": 942111273,
       "read_only": false,
-      "entry-point": "0xc26f22db",
+      "entry-point": "0x38277a29",
       "read-only": false
     },
-    "mint_kusdg": {
+    "kg_mint": {
       "argument": "empty.mint_args",
       "return": "",
       "description": "Mint KUSDG",
-      "entry_point": 2765861878,
+      "entry_point": 405731618,
       "read_only": false,
-      "entry-point": "0xa4dbb3f6",
+      "entry-point": "0x182ef922",
       "read-only": false
     },
-    "repay_kusdg": {
+    "kg_usd": {
+      "argument": "empty.kg_vaultbalances",
+      "return": "empty.uint64",
+      "description": "Calculate the total USD value of KOIN",
+      "entry_point": 63944466,
+      "read_only": true,
+      "entry-point": "0x03cfb712",
+      "read-only": true
+    },
+    "kg_repay": {
       "argument": "empty.repay_args",
       "return": "",
       "description": "Repay KUSDG",
-      "entry_point": 2247361946,
+      "entry_point": 1781406550,
       "read_only": false,
-      "entry-point": "0x85f4059a",
+      "entry-point": "0x6a2e1b56",
       "read-only": false
     },
-    "liquidate": {
+    "kg_liquidate": {
       "argument": "empty.liquidate_args",
       "return": "",
       "description": "Liquidate a vault",
-      "entry_point": 3168193652,
+      "entry_point": 3701637612,
       "read_only": false,
-      "entry-point": "0xbcd6cc74",
+      "entry-point": "0xdca281ec",
       "read-only": false
     },
     "name": {
@@ -163,7 +181,7 @@
       "read-only": false
     }
   },
-  "types": "CpQJCgtlbXB0eS5wcm90bxIFZW1wdHkaFGtvaW5vcy9vcHRpb25zLnByb3RvIhsKA3N0chIUCgV2YWx1ZRgBIAEoCVIFdmFsdWUiHgoGdWludDY0EhQKBXZhbHVlGAEgASgEUgV2YWx1ZSJHCg12YXVsdGJhbGFuY2VzEhYKBGtvaW4YASABKARCAjABUgRrb2luEh4KCGt1c2Rnb2xkGAIgASgEQgIwAVIIa3VzZGdvbGQibQoJbGlzdF9hcmdzEhoKBXN0YXJ0GAEgASgMQgSAtRgGUgVzdGFydBIUCgVsaW1pdBgCIAEoBVIFbGltaXQSLgoJZGlyZWN0aW9uGAMgASgOMhAuZW1wdHkuZGlyZWN0aW9uUglkaXJlY3Rpb24iLQoJYWRkcmVzc2VzEiAKCGFjY291bnRzGAEgAygMQgSAtRgGUghhY2NvdW50cyIsCg5nZXRfdmF1bHRfYXJncxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXIigwEKDGRlcG9zaXRfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBmFtb3VudBgCIAEoBEICMAFSBmFtb3VudBIQCgNmZWUYAyABKA1SA2ZlZRIlCgtmZWVfYWRkcmVzcxgEIAEoDEIEgLUYBlIKZmVlQWRkcmVzcyJLCg13aXRoZHJhd19hcmdzEh4KB2FjY291bnQYASABKAxCBIC1GAZSB2FjY291bnQSGgoGYW1vdW50GAIgASgEQgIwAVIGYW1vdW50IkcKCW1pbnRfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBmFtb3VudBgCIAEoBEICMAFSBmFtb3VudCJcCgpyZXBheV9hcmdzEh4KB2FjY291bnQYASABKAxCBIC1GAZSB2FjY291bnQSEgoEdHlwZRgCIAEoDVIEdHlwZRIaCgZhbW91bnQYAyABKARCAjABUgZhbW91bnQiTAoObGlxdWlkYXRlX2FyZ3MSHgoHYWNjb3VudBgBIAEoDEIEgLUYBlIHYWNjb3VudBIaCgV2YXVsdBgCIAEoDEIEgLUYBlIFdmF1bHQiDAoKcmF0aW9fYXJncyKCAQoMcmF0aW9fcmVzdWx0EhUKBmtfbGFzdBgBIAEoCVIFa0xhc3QSGwoHdG9rZW5fYRgCIAEoBEICMAFSBnRva2VuQRIbCgd0b2tlbl9iGAMgASgEQgIwAVIGdG9rZW5CEiEKCmJsb2NrX3RpbWUYBCABKARCAjABUglibG9ja1RpbWUiOwoOZ2V0X3ByaWNlX2FyZ3MSKQoNdG9rZW5fYWRkcmVzcxgBIAEoDEIEgLUYBVIMdG9rZW5BZGRyZXNzIkoKDHByaWNlX29iamVjdBIYCgVwcmljZRgBIAEoBEICMAFSBXByaWNlEiAKCXRpbWVzdGFtcBgCIAEoBEICMAFSCXRpbWVzdGFtcCoqCglkaXJlY3Rpb24SDQoJYXNjZW5kaW5nEAASDgoKZGVzY2VuZGluZxABYgZwcm90bzMKiQsKIWtvaW5vc2JveC1wcm90by90b2tlbi90b2tlbi5wcm90bxIFdG9rZW4aFGtvaW5vcy9vcHRpb25zLnByb3RvIhsKA3N0chIUCgV2YWx1ZRgBIAEoCVIFdmFsdWUiHgoGdWludDMyEhQKBXZhbHVlGAEgASgNUgV2YWx1ZSIiCgZ1aW50NjQSGAoFdmFsdWUYASABKARCAjABUgV2YWx1ZSIdCgVib29sZRIUCgV2YWx1ZRgBIAEoCFIFdmFsdWUicAoEaW5mbxISCgRuYW1lGAEgASgJUgRuYW1lEhYKBnN5bWJvbBgCIAEoCVIGc3ltYm9sEhoKCGRlY2ltYWxzGAMgASgNUghkZWNpbWFscxIgCgtkZXNjcmlwdGlvbhgEIAEoCVILZGVzY3JpcHRpb24iLQoPYmFsYW5jZV9vZl9hcmdzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lciJtCg10cmFuc2Zlcl9hcmdzEhgKBGZyb20YASABKAxCBIC1GAZSBGZyb20SFAoCdG8YAiABKAxCBIC1GAZSAnRvEhgKBXZhbHVlGAMgASgEQgIwAVIFdmFsdWUSEgoEbWVtbxgEIAEoCVIEbWVtbyI7CgltaW50X2FyZ3MSFAoCdG8YASABKAxCBIC1GAZSAnRvEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiPwoJYnVybl9hcmdzEhgKBGZyb20YASABKAxCBIC1GAZSBGZyb20SGAoFdmFsdWUYAiABKARCAjABUgV2YWx1ZSJkCgxhcHByb3ZlX2FyZ3MSGgoFb3duZXIYASABKAxCBIC1GAZSBW93bmVyEh4KB3NwZW5kZXIYAiABKAxCBIC1GAZSB3NwZW5kZXISGAoFdmFsdWUYAyABKARCAjABUgV2YWx1ZSJMCg5hbGxvd2FuY2VfYXJncxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISHgoHc3BlbmRlchgCIAEoDEIEgLUYBlIHc3BlbmRlciKDAQoTZ2V0X2FsbG93YW5jZXNfYXJncxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISGgoFc3RhcnQYAiABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAMgASgFUgVsaW1pdBIeCgpkZXNjZW5kaW5nGAQgASgIUgpkZXNjZW5kaW5nIkkKDXNwZW5kZXJfdmFsdWUSHgoHc3BlbmRlchgBIAEoDEIEgLUYBlIHc3BlbmRlchIYCgV2YWx1ZRgCIAEoBEICMAFSBXZhbHVlImkKFWdldF9hbGxvd2FuY2VzX3JldHVybhIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISNAoKYWxsb3dhbmNlcxgCIAMoCzIULnRva2VuLnNwZW5kZXJfdmFsdWVSCmFsbG93YW5jZXMiWgoOdHJhbnNmZXJfZXZlbnQSGAoEZnJvbRgBIAEoDEIEgLUYBlIEZnJvbRIUCgJ0bxgCIAEoDEIEgLUYBlICdG8SGAoFdmFsdWUYAyABKARCAjABUgV2YWx1ZSI8CgptaW50X2V2ZW50EhQKAnRvGAEgASgMQgSAtRgGUgJ0bxIYCgV2YWx1ZRgCIAEoBEICMAFSBXZhbHVlIkAKCmJ1cm5fZXZlbnQSGAoEZnJvbRgBIAEoDEIEgLUYBlIEZnJvbRIYCgV2YWx1ZRgCIAEoBEICMAFSBXZhbHVlImUKDWFwcHJvdmVfZXZlbnQSGgoFb3duZXIYASABKAxCBIC1GAZSBW93bmVyEh4KB3NwZW5kZXIYAiABKAxCBIC1GAZSB3NwZW5kZXISGAoFdmFsdWUYAyABKARCAjABUgV2YWx1ZWIGcHJvdG8z",
+  "types": "Cs8JCgtlbXB0eS5wcm90bxIFZW1wdHkaFGtvaW5vcy9vcHRpb25zLnByb3RvIhsKA3N0chIUCgV2YWx1ZRgBIAEoCVIFdmFsdWUiHgoGdWludDY0EhQKBXZhbHVlGAEgASgEUgV2YWx1ZSJKChBrZ192YXVsdGJhbGFuY2VzEhYKBGtvaW4YASABKARCAjABUgRrb2luEh4KCGt1c2Rnb2xkGAIgASgEQgIwAVIIa3VzZGdvbGQiQQoUa2dfcHJvdG9jb2xfYmFsYW5jZXMSKQoDa3ZiGAEgAygLMhcuZW1wdHkua2dfdmF1bHRiYWxhbmNlc1IDa3ZiIi8KEWtnX2dldF92YXVsdF9hcmdzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lciJtCglsaXN0X2FyZ3MSGgoFc3RhcnQYASABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAIgASgFUgVsaW1pdBIuCglkaXJlY3Rpb24YAyABKA4yEC5lbXB0eS5kaXJlY3Rpb25SCWRpcmVjdGlvbiItCglhZGRyZXNzZXMSIAoIYWNjb3VudHMYASADKAxCBIC1GAZSCGFjY291bnRzIoYBCg9rZ19kZXBvc2l0X2FyZ3MSHgoHYWNjb3VudBgBIAEoDEIEgLUYBlIHYWNjb3VudBIaCgZhbW91bnQYAiABKARCAjABUgZhbW91bnQSEAoDZmVlGAMgASgNUgNmZWUSJQoLZmVlX2FkZHJlc3MYBCABKAxCBIC1GAZSCmZlZUFkZHJlc3MiTgoQa2dfd2l0aGRyYXdfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBmFtb3VudBgCIAEoBEICMAFSBmFtb3VudCJHCgltaW50X2FyZ3MSHgoHYWNjb3VudBgBIAEoDEIEgLUYBlIHYWNjb3VudBIaCgZhbW91bnQYAiABKARCAjABUgZhbW91bnQiSAoKcmVwYXlfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBmFtb3VudBgCIAEoBEICMAFSBmFtb3VudCJMCg5saXF1aWRhdGVfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBXZhdWx0GAIgASgMQgSAtRgGUgV2YXVsdCIMCgpyYXRpb19hcmdzIoIBCgxyYXRpb19yZXN1bHQSFQoGa19sYXN0GAEgASgJUgVrTGFzdBIbCgd0b2tlbl9hGAIgASgEQgIwAVIGdG9rZW5BEhsKB3Rva2VuX2IYAyABKARCAjABUgZ0b2tlbkISIQoKYmxvY2tfdGltZRgEIAEoBEICMAFSCWJsb2NrVGltZSI7Cg5nZXRfcHJpY2VfYXJncxIpCg10b2tlbl9hZGRyZXNzGAEgASgMQgSAtRgFUgx0b2tlbkFkZHJlc3MiSgoMcHJpY2Vfb2JqZWN0EhgKBXByaWNlGAEgASgEQgIwAVIFcHJpY2USIAoJdGltZXN0YW1wGAIgASgEQgIwAVIJdGltZXN0YW1wKioKCWRpcmVjdGlvbhINCglhc2NlbmRpbmcQABIOCgpkZXNjZW5kaW5nEAFiBnByb3RvMwqJCwoha29pbm9zYm94LXByb3RvL3Rva2VuL3Rva2VuLnByb3RvEgV0b2tlbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSJwCgRpbmZvEhIKBG5hbWUYASABKAlSBG5hbWUSFgoGc3ltYm9sGAIgASgJUgZzeW1ib2wSGgoIZGVjaW1hbHMYAyABKA1SCGRlY2ltYWxzEiAKC2Rlc2NyaXB0aW9uGAQgASgJUgtkZXNjcmlwdGlvbiItCg9iYWxhbmNlX29mX2FyZ3MSGgoFb3duZXIYASABKAxCBIC1GAZSBW93bmVyIm0KDXRyYW5zZmVyX2FyZ3MSGAoEZnJvbRgBIAEoDEIEgLUYBlIEZnJvbRIUCgJ0bxgCIAEoDEIEgLUYBlICdG8SGAoFdmFsdWUYAyABKARCAjABUgV2YWx1ZRISCgRtZW1vGAQgASgJUgRtZW1vIjsKCW1pbnRfYXJncxIUCgJ0bxgBIAEoDEIEgLUYBlICdG8SGAoFdmFsdWUYAiABKARCAjABUgV2YWx1ZSI/CglidXJuX2FyZ3MSGAoEZnJvbRgBIAEoDEIEgLUYBlIEZnJvbRIYCgV2YWx1ZRgCIAEoBEICMAFSBXZhbHVlImQKDGFwcHJvdmVfYXJncxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISHgoHc3BlbmRlchgCIAEoDEIEgLUYBlIHc3BlbmRlchIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlIkwKDmFsbG93YW5jZV9hcmdzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIeCgdzcGVuZGVyGAIgASgMQgSAtRgGUgdzcGVuZGVyIoMBChNnZXRfYWxsb3dhbmNlc19hcmdzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIaCgVzdGFydBgCIAEoDEIEgLUYBlIFc3RhcnQSFAoFbGltaXQYAyABKAVSBWxpbWl0Eh4KCmRlc2NlbmRpbmcYBCABKAhSCmRlc2NlbmRpbmciSQoNc3BlbmRlcl92YWx1ZRIeCgdzcGVuZGVyGAEgASgMQgSAtRgGUgdzcGVuZGVyEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiaQoVZ2V0X2FsbG93YW5jZXNfcmV0dXJuEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchI0CgphbGxvd2FuY2VzGAIgAygLMhQudG9rZW4uc3BlbmRlcl92YWx1ZVIKYWxsb3dhbmNlcyJaCg50cmFuc2Zlcl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhQKAnRvGAIgASgMQgSAtRgGUgJ0bxIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlIjwKCm1pbnRfZXZlbnQSFAoCdG8YASABKAxCBIC1GAZSAnRvEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiQAoKYnVybl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiZQoNYXBwcm92ZV9ldmVudBIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISHgoHc3BlbmRlchgCIAEoDEIEgLUYBlIHc3BlbmRlchIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlYgZwcm90bzM=",
   "koilib_types": {
     "nested": {
       "empty": {
@@ -184,7 +202,7 @@
               }
             }
           },
-          "vaultbalances": {
+          "kg_vaultbalances": {
             "fields": {
               "koin": {
                 "type": "uint64",
@@ -198,6 +216,26 @@
                 "id": 2,
                 "options": {
                   "jstype": "JS_STRING"
+                }
+              }
+            }
+          },
+          "kg_protocol_balances": {
+            "fields": {
+              "kvb": {
+                "rule": "repeated",
+                "type": "kg_vaultbalances",
+                "id": 1
+              }
+            }
+          },
+          "kg_get_vault_args": {
+            "fields": {
+              "owner": {
+                "type": "bytes",
+                "id": 1,
+                "options": {
+                  "(koinos.btype)": "ADDRESS"
                 }
               }
             }
@@ -239,18 +277,7 @@
               "descending": 1
             }
           },
-          "get_vault_args": {
-            "fields": {
-              "owner": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              }
-            }
-          },
-          "deposit_args": {
+          "kg_deposit_args": {
             "fields": {
               "account": {
                 "type": "bytes",
@@ -279,7 +306,7 @@
               }
             }
           },
-          "withdraw_args": {
+          "kg_withdraw_args": {
             "fields": {
               "account": {
                 "type": "bytes",
@@ -324,13 +351,9 @@
                   "(koinos.btype)": "ADDRESS"
                 }
               },
-              "type": {
-                "type": "uint32",
-                "id": 2
-              },
               "amount": {
                 "type": "uint64",
-                "id": 3,
+                "id": 2,
                 "options": {
                   "jstype": "JS_STRING"
                 }
