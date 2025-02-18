@@ -13,7 +13,7 @@ const VAULTS_SPACE_ID = 4;
 
 // TESTNET CONTRACTS
 // Random token contract (placeholder). Freely mint tokens (in range of uint64) 
-const koinContract = new Base(Base58.decode("1PWNYq8aF6rcKd4of59FEeSEKmYifCyoJc")); // second stable
+const koinContract = new Base(Base58.decode("1PWNYq8aF6rcKd4of59FEeSEKmYifCyoJc"));
 
 // KoinDX pool contract (placeholder)
 const koinUsdt = new Extc(Base58.decode("1JNfiwk1QT4Ao4bu1YrTD7rEiQoTPXKnZ6"));
@@ -94,8 +94,10 @@ export class KusdGold extends Token {
     let fee_amount: u64 = 0;
 
     // Sending a Fee is optional
-    // Fee has 3 decimal places, minimum fee is 0.001 (0.1 %) if true
-    if (args.fee > 0) {
+    // Fee has 3 decimal places, minimum fee is 0.001 (0.1 %) if true, maximum fee is 0.5%
+    if (args.fee > 5) {
+      throw new Error("Fee can't be set this high");
+    } else if (args.fee > 0) {
       fee_amount = multiplyAndDivide(args.amount, args.fee, 1000);
       toDeposit = args.amount - fee_amount;
     } else {
@@ -167,7 +169,7 @@ export class KusdGold extends Token {
   kg_usd(args: empty.kg_vaultbalances): empty.uint64 {
     
     // on mainnet compare the KOIN price of KOINDX and the KAP USD oracle and use the highest one
-    const KAP_price: u64 = this.get_KAP_price().price; // 0.1892
+    const KAP_price: u64 = this.get_KAP_price().price; // test object, hardcore price of 0.1892
     const KOINDX_price: u64 = this.get_KAP_price().price;
     // On mainnet, get the KoinDX trading pool reserves instead:
     // const KOINDX_price: u64 = multiplyAndDivide(koinUsdt.ratio().token_b, 100000000, koinUsdt.ratio().token_a);
