@@ -169,7 +169,7 @@ export class KusdGold extends Token {
   kg_usd(args: empty.kg_vaultbalances): empty.uint64 {
     
     // on mainnet compare the KOIN price of KOINDX and the KAP USD oracle and use the highest one
-    const KAP_price: u64 = this.get_KAP_price().price; // test object, hardcore price of 0.1892
+    const KAP_price: u64 = this.get_KAP_price().price; // test object, hardcoded price of 0.1892
     const KOINDX_price: u64 = this.get_KAP_price().price;
     // On mainnet, get the KoinDX trading pool reserves instead:
     // const KOINDX_price: u64 = multiplyAndDivide(koinUsdt.ratio().token_b, 100000000, koinUsdt.ratio().token_a);
