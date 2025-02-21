@@ -10,75 +10,82 @@ let returnBuffer = new Uint8Array(1024);
 switch (contract.callArgs!.entry_point) {
   /* class KusdGold */
     
-  // kg_get_vaults
-  case 0xf598cebe: {
+  // get_koin_protocol_balances
+  case 0x01fd5406: {
     const args = Protobuf.decode<empty.list_args>(contract.callArgs!.args, empty.list_args.decode);
-    const result = contract.kg_get_vaults(args);
+    const result = contract.get_koin_protocol_balances(args);
+    returnBuffer = Protobuf.encode(result, empty.kusd_koin_protocol_balances.encode);
+    break;
+  }
+
+  // get_koin_vaults
+  case 0x27a07557: {
+    const args = Protobuf.decode<empty.list_args>(contract.callArgs!.args, empty.list_args.decode);
+    const result = contract.get_koin_vaults(args);
     returnBuffer = Protobuf.encode(result, empty.addresses.encode);
     break;
   }
 
-  // kg_get_balances
-  case 0xfc6f58c3: {
-    const args = Protobuf.decode<empty.list_args>(contract.callArgs!.args, empty.list_args.decode);
-    const result = contract.kg_get_balances(args);
-    returnBuffer = Protobuf.encode(result, empty.kg_protocol_balances.encode);
+  // get_koin_vault
+  case 0x6be080fe: {
+    const args = Protobuf.decode<empty.get_vault_args>(contract.callArgs!.args, empty.get_vault_args.decode);
+    const result = contract.get_koin_vault(args);
+    returnBuffer = Protobuf.encode(result, empty.kusd_koin_vaultbalances.encode);
     break;
   }
 
-  // kg_get_vault
-  case 0xe9ffe0e5: {
-    const args = Protobuf.decode<empty.kg_get_vault_args>(contract.callArgs!.args, empty.kg_get_vault_args.decode);
-    const result = contract.kg_get_vault(args);
-    returnBuffer = Protobuf.encode(result, empty.kg_vaultbalances.encode);
-    break;
-  }
-
-  // kg_deposit
-  case 0x3e34fa85: {
-    const args = Protobuf.decode<empty.kg_deposit_args>(contract.callArgs!.args, empty.kg_deposit_args.decode);
-    contract.kg_deposit(args);
+  // deposit
+  case 0xc3b9fb78: {
+    const args = Protobuf.decode<empty.deposit_args>(contract.callArgs!.args, empty.deposit_args.decode);
+    contract.deposit(args);
     returnBuffer = new Uint8Array(0);
     break;
   }
 
-  // kg_withdraw
-  case 0x38277a29: {
-    const args = Protobuf.decode<empty.kg_withdraw_args>(contract.callArgs!.args, empty.kg_withdraw_args.decode);
-    contract.kg_withdraw(args);
+  // withdraw
+  case 0xc26f22db: {
+    const args = Protobuf.decode<empty.withdraw_args>(contract.callArgs!.args, empty.withdraw_args.decode);
+    contract.withdraw(args);
     returnBuffer = new Uint8Array(0);
     break;
   }
 
-  // kg_mint
-  case 0x182ef922: {
+  // kusd_mint
+  case 0xfe3c15d6: {
     const args = Protobuf.decode<empty.mint_args>(contract.callArgs!.args, empty.mint_args.decode);
-    contract.kg_mint(args);
+    contract.kusd_mint(args);
     returnBuffer = new Uint8Array(0);
     break;
   }
 
-  // kg_usd
-  case 0x03cfb712: {
-    const args = Protobuf.decode<empty.kg_vaultbalances>(contract.callArgs!.args, empty.kg_vaultbalances.decode);
-    const result = contract.kg_usd(args);
+  // usd_price
+  case 0x24072170: {
+    const args = Protobuf.decode<empty.kusd_koin_vaultbalances>(contract.callArgs!.args, empty.kusd_koin_vaultbalances.decode);
+    const result = contract.usd_price(args);
     returnBuffer = Protobuf.encode(result, empty.uint64.encode);
     break;
   }
 
-  // kg_repay
-  case 0x6a2e1b56: {
+  // repay
+  case 0x66f49a3a: {
     const args = Protobuf.decode<empty.repay_args>(contract.callArgs!.args, empty.repay_args.decode);
-    contract.kg_repay(args);
+    contract.repay(args);
     returnBuffer = new Uint8Array(0);
     break;
   }
 
-  // kg_liquidate
-  case 0xdca281ec: {
+  // liquidate
+  case 0xbcd6cc74: {
     const args = Protobuf.decode<empty.liquidate_args>(contract.callArgs!.args, empty.liquidate_args.decode);
-    contract.kg_liquidate(args);
+    contract.liquidate(args);
     returnBuffer = new Uint8Array(0);
+    break;
+  }
+
+  // get_KAP_price
+  case 0x0424217b: {
+    const result = contract.get_KAP_price();
+    returnBuffer = Protobuf.encode(result, empty.price_object.encode);
     break;
   }
 

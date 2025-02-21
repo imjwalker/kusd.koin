@@ -74,22 +74,22 @@ export namespace empty {
   }
 
   @unmanaged
-  export class kg_vaultbalances {
-    static encode(message: kg_vaultbalances, writer: Writer): void {
+  export class kusd_koin_vaultbalances {
+    static encode(message: kusd_koin_vaultbalances, writer: Writer): void {
       if (message.koin != 0) {
         writer.uint32(8);
         writer.uint64(message.koin);
       }
 
-      if (message.kusdgold != 0) {
+      if (message.kusd_koin != 0) {
         writer.uint32(16);
-        writer.uint64(message.kusdgold);
+        writer.uint64(message.kusd_koin);
       }
     }
 
-    static decode(reader: Reader, length: i32): kg_vaultbalances {
+    static decode(reader: Reader, length: i32): kusd_koin_vaultbalances {
       const end: usize = length < 0 ? reader.end : reader.ptr + length;
-      const message = new kg_vaultbalances();
+      const message = new kusd_koin_vaultbalances();
 
       while (reader.ptr < end) {
         const tag = reader.uint32();
@@ -99,7 +99,7 @@ export namespace empty {
             break;
 
           case 2:
-            message.kusdgold = reader.uint64();
+            message.kusd_koin = reader.uint64();
             break;
 
           default:
@@ -112,34 +112,36 @@ export namespace empty {
     }
 
     koin: u64;
-    kusdgold: u64;
+    kusd_koin: u64;
 
-    constructor(koin: u64 = 0, kusdgold: u64 = 0) {
+    constructor(koin: u64 = 0, kusd_koin: u64 = 0) {
       this.koin = koin;
-      this.kusdgold = kusdgold;
+      this.kusd_koin = kusd_koin;
     }
   }
 
-  export class kg_protocol_balances {
-    static encode(message: kg_protocol_balances, writer: Writer): void {
+  export class kusd_koin_protocol_balances {
+    static encode(message: kusd_koin_protocol_balances, writer: Writer): void {
       const unique_name_kvb = message.kvb;
       for (let i = 0; i < unique_name_kvb.length; ++i) {
         writer.uint32(10);
         writer.fork();
-        kg_vaultbalances.encode(unique_name_kvb[i], writer);
+        kusd_koin_vaultbalances.encode(unique_name_kvb[i], writer);
         writer.ldelim();
       }
     }
 
-    static decode(reader: Reader, length: i32): kg_protocol_balances {
+    static decode(reader: Reader, length: i32): kusd_koin_protocol_balances {
       const end: usize = length < 0 ? reader.end : reader.ptr + length;
-      const message = new kg_protocol_balances();
+      const message = new kusd_koin_protocol_balances();
 
       while (reader.ptr < end) {
         const tag = reader.uint32();
         switch (tag >>> 3) {
           case 1:
-            message.kvb.push(kg_vaultbalances.decode(reader, reader.uint32()));
+            message.kvb.push(
+              kusd_koin_vaultbalances.decode(reader, reader.uint32())
+            );
             break;
 
           default:
@@ -151,15 +153,15 @@ export namespace empty {
       return message;
     }
 
-    kvb: Array<kg_vaultbalances>;
+    kvb: Array<kusd_koin_vaultbalances>;
 
-    constructor(kvb: Array<kg_vaultbalances> = []) {
+    constructor(kvb: Array<kusd_koin_vaultbalances> = []) {
       this.kvb = kvb;
     }
   }
 
-  export class kg_get_vault_args {
-    static encode(message: kg_get_vault_args, writer: Writer): void {
+  export class get_vault_args {
+    static encode(message: get_vault_args, writer: Writer): void {
       const unique_name_owner = message.owner;
       if (unique_name_owner !== null) {
         writer.uint32(10);
@@ -167,9 +169,9 @@ export namespace empty {
       }
     }
 
-    static decode(reader: Reader, length: i32): kg_get_vault_args {
+    static decode(reader: Reader, length: i32): get_vault_args {
       const end: usize = length < 0 ? reader.end : reader.ptr + length;
-      const message = new kg_get_vault_args();
+      const message = new get_vault_args();
 
       while (reader.ptr < end) {
         const tag = reader.uint32();
@@ -294,8 +296,8 @@ export namespace empty {
     }
   }
 
-  export class kg_deposit_args {
-    static encode(message: kg_deposit_args, writer: Writer): void {
+  export class deposit_args {
+    static encode(message: deposit_args, writer: Writer): void {
       const unique_name_account = message.account;
       if (unique_name_account !== null) {
         writer.uint32(10);
@@ -319,9 +321,9 @@ export namespace empty {
       }
     }
 
-    static decode(reader: Reader, length: i32): kg_deposit_args {
+    static decode(reader: Reader, length: i32): deposit_args {
       const end: usize = length < 0 ? reader.end : reader.ptr + length;
-      const message = new kg_deposit_args();
+      const message = new deposit_args();
 
       while (reader.ptr < end) {
         const tag = reader.uint32();
@@ -369,8 +371,8 @@ export namespace empty {
     }
   }
 
-  export class kg_withdraw_args {
-    static encode(message: kg_withdraw_args, writer: Writer): void {
+  export class withdraw_args {
+    static encode(message: withdraw_args, writer: Writer): void {
       const unique_name_account = message.account;
       if (unique_name_account !== null) {
         writer.uint32(10);
@@ -383,9 +385,9 @@ export namespace empty {
       }
     }
 
-    static decode(reader: Reader, length: i32): kg_withdraw_args {
+    static decode(reader: Reader, length: i32): withdraw_args {
       const end: usize = length < 0 ? reader.end : reader.ptr + length;
-      const message = new kg_withdraw_args();
+      const message = new withdraw_args();
 
       while (reader.ptr < end) {
         const tag = reader.uint32();

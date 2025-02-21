@@ -8,15 +8,31 @@ import { IToken as Token } from "@koinosbox/contracts";
 export class KusdGold extends Token {
 
   /**
+ * Get a list of all vault balances
+ * @external
+ * @readonly
+ */
+  get_koin_protocol_balances(args: empty.list_args): empty.kusd_koin_protocol_balances {
+    const argsBuffer = Protobuf.encode(args, empty.list_args.encode);
+    const callRes = System.call(this._contractId, 0x01fd5406, argsBuffer);
+    if (callRes.code != 0) {
+      const errorMessage = `failed to call 'KusdGold.get_koin_protocol_balances': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
+    }
+    if (!callRes.res.object) return new empty.kusd_koin_protocol_balances();
+    return Protobuf.decode<empty.kusd_koin_protocol_balances>(callRes.res.object, empty.kusd_koin_protocol_balances.decode);
+  }
+
+  /**
  * Get a list of all vault addresses
  * @external
  * @readonly
  */
-  kg_get_vaults(args: empty.list_args): empty.addresses {
+  get_koin_vaults(args: empty.list_args): empty.addresses {
     const argsBuffer = Protobuf.encode(args, empty.list_args.encode);
-    const callRes = System.call(this._contractId, 0xf598cebe, argsBuffer);
+    const callRes = System.call(this._contractId, 0x27a07557, argsBuffer);
     if (callRes.code != 0) {
-      const errorMessage = `failed to call 'KusdGold.kg_get_vaults': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      const errorMessage = `failed to call 'KusdGold.get_koin_vaults': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
       System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
     }
     if (!callRes.res.object) return new empty.addresses();
@@ -24,89 +40,73 @@ export class KusdGold extends Token {
   }
 
   /**
- * Get a list of all vault balances
- * @external
- * @readonly
- */
-  kg_get_balances(args: empty.list_args): empty.kg_protocol_balances {
-    const argsBuffer = Protobuf.encode(args, empty.list_args.encode);
-    const callRes = System.call(this._contractId, 0xfc6f58c3, argsBuffer);
-    if (callRes.code != 0) {
-      const errorMessage = `failed to call 'KusdGold.kg_get_balances': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
-      System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
-    }
-    if (!callRes.res.object) return new empty.kg_protocol_balances();
-    return Protobuf.decode<empty.kg_protocol_balances>(callRes.res.object, empty.kg_protocol_balances.decode);
-  }
-
-  /**
  * Get balances of a vault
  * @external
  * @readonly
  */
-  kg_get_vault(args: empty.kg_get_vault_args): empty.kg_vaultbalances {
-    const argsBuffer = Protobuf.encode(args, empty.kg_get_vault_args.encode);
-    const callRes = System.call(this._contractId, 0xe9ffe0e5, argsBuffer);
+  get_koin_vault(args: empty.get_vault_args): empty.kusd_koin_vaultbalances {
+    const argsBuffer = Protobuf.encode(args, empty.get_vault_args.encode);
+    const callRes = System.call(this._contractId, 0x6be080fe, argsBuffer);
     if (callRes.code != 0) {
-      const errorMessage = `failed to call 'KusdGold.kg_get_vault': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      const errorMessage = `failed to call 'KusdGold.get_koin_vault': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
       System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
     }
-    if (!callRes.res.object) return new empty.kg_vaultbalances();
-    return Protobuf.decode<empty.kg_vaultbalances>(callRes.res.object, empty.kg_vaultbalances.decode);
+    if (!callRes.res.object) return new empty.kusd_koin_vaultbalances();
+    return Protobuf.decode<empty.kusd_koin_vaultbalances>(callRes.res.object, empty.kusd_koin_vaultbalances.decode);
   }
 
   /**
  * Deposit KOIN as collateral
  * @external
  */
-  kg_deposit(args: empty.kg_deposit_args): void {
-    const argsBuffer = Protobuf.encode(args, empty.kg_deposit_args.encode);
-    const callRes = System.call(this._contractId, 0x3e34fa85, argsBuffer);
+  deposit(args: empty.deposit_args): void {
+    const argsBuffer = Protobuf.encode(args, empty.deposit_args.encode);
+    const callRes = System.call(this._contractId, 0xc3b9fb78, argsBuffer);
     if (callRes.code != 0) {
-      const errorMessage = `failed to call 'KusdGold.kg_deposit': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      const errorMessage = `failed to call 'KusdGold.deposit': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
       System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
     }
     return;
   }
 
   /**
- * Withdraw collateral from a vault
+ * Withdraw KOIN from a vault
  * @external
  */
-  kg_withdraw(args: empty.kg_withdraw_args): void {
-    const argsBuffer = Protobuf.encode(args, empty.kg_withdraw_args.encode);
-    const callRes = System.call(this._contractId, 0x38277a29, argsBuffer);
+  withdraw(args: empty.withdraw_args): void {
+    const argsBuffer = Protobuf.encode(args, empty.withdraw_args.encode);
+    const callRes = System.call(this._contractId, 0xc26f22db, argsBuffer);
     if (callRes.code != 0) {
-      const errorMessage = `failed to call 'KusdGold.kg_withdraw': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      const errorMessage = `failed to call 'KusdGold.withdraw': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
       System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
     }
     return;
   }
 
   /**
- * Mint KUSDG
+ * Mint kusd.koinos
  * @external
  */
-  kg_mint(args: empty.mint_args): void {
+  kusd_mint(args: empty.mint_args): void {
     const argsBuffer = Protobuf.encode(args, empty.mint_args.encode);
-    const callRes = System.call(this._contractId, 0x182ef922, argsBuffer);
+    const callRes = System.call(this._contractId, 0xfe3c15d6, argsBuffer);
     if (callRes.code != 0) {
-      const errorMessage = `failed to call 'KusdGold.kg_mint': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      const errorMessage = `failed to call 'KusdGold.kusd_mint': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
       System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
     }
     return;
   }
 
   /**
-   * Calculate the total USD value of KOIN
+   * Calculate the usd value of the KOIN collateral
    * @external
    * @readonly
    */
-  kg_usd(args: empty.kg_vaultbalances): empty.uint64 {
-    const argsBuffer = Protobuf.encode(args, empty.kg_vaultbalances.encode);
-    const callRes = System.call(this._contractId, 0x03cfb712, argsBuffer);
+  usd_price(args: empty.kusd_koin_vaultbalances): empty.uint64 {
+    const argsBuffer = Protobuf.encode(args, empty.kusd_koin_vaultbalances.encode);
+    const callRes = System.call(this._contractId, 0x24072170, argsBuffer);
     if (callRes.code != 0) {
-      const errorMessage = `failed to call 'KusdGold.kg_usd': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      const errorMessage = `failed to call 'KusdGold.usd_price': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
       System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
     }
     if (!callRes.res.object) return new empty.uint64();
@@ -114,14 +114,14 @@ export class KusdGold extends Token {
   }
 
   /**
- * Repay KUSDG
+ * Repay kusd.koinos
  * @external
  */
-  kg_repay(args: empty.repay_args): void {
+  repay(args: empty.repay_args): void {
     const argsBuffer = Protobuf.encode(args, empty.repay_args.encode);
-    const callRes = System.call(this._contractId, 0x6a2e1b56, argsBuffer);
+    const callRes = System.call(this._contractId, 0x66f49a3a, argsBuffer);
     if (callRes.code != 0) {
-      const errorMessage = `failed to call 'KusdGold.kg_repay': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      const errorMessage = `failed to call 'KusdGold.repay': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
       System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
     }
     return;
@@ -131,13 +131,29 @@ export class KusdGold extends Token {
  * Liquidate a vault
  * @external
  */
-  kg_liquidate(args: empty.liquidate_args): void {
+  liquidate(args: empty.liquidate_args): void {
     const argsBuffer = Protobuf.encode(args, empty.liquidate_args.encode);
-    const callRes = System.call(this._contractId, 0xdca281ec, argsBuffer);
+    const callRes = System.call(this._contractId, 0xbcd6cc74, argsBuffer);
     if (callRes.code != 0) {
-      const errorMessage = `failed to call 'KusdGold.kg_liquidate': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      const errorMessage = `failed to call 'KusdGold.liquidate': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
       System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
     }
     return;
+  }
+
+  /**
+   * Get KAP price oracle for KOIN price
+   * @external
+   * @readonly
+   */
+  get_KAP_price(): empty.price_object {
+    const argsBuffer = new Uint8Array(0);
+    const callRes = System.call(this._contractId, 0x0424217b, argsBuffer);
+    if (callRes.code != 0) {
+      const errorMessage = `failed to call 'KusdGold.get_KAP_price': ${callRes.res.error && callRes.res.error!.message ? callRes.res.error!.message : "unknown error"}`;
+      System.exit(callRes.code, StringBytes.stringToBytes(errorMessage));
+    }
+    if (!callRes.res.object) return new empty.price_object();
+    return Protobuf.decode<empty.price_object>(callRes.res.object, empty.price_object.decode);
   }
 }

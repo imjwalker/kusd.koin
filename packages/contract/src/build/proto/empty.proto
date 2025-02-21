@@ -12,16 +12,16 @@ message uint64 {
    uint64 value = 1;
 }
 
-message kg_vaultbalances {
+message kusd_koin_vaultbalances {
    uint64 koin = 1 [jstype = JS_STRING];
-   uint64 kusdgold = 2 [jstype = JS_STRING];
+   uint64 kusd_koin = 2 [jstype = JS_STRING];
 }
 
-message kg_protocol_balances {
-   repeated kg_vaultbalances kvb = 1;
+message kusd_koin_protocol_balances {
+   repeated kusd_koin_vaultbalances kvb = 1;
 }
 
-message kg_get_vault_args {
+message get_vault_args {
    bytes owner = 1 [(koinos.btype) = ADDRESS];
 }
 
@@ -40,14 +40,14 @@ enum direction {
    descending = 1;
 }
 
-message kg_deposit_args {
+message deposit_args {
    bytes account = 1 [(koinos.btype) = ADDRESS];
    uint64 amount = 2 [jstype = JS_STRING];
    uint32 fee = 3;
    bytes fee_address = 4 [(koinos.btype) = ADDRESS];
 }
 
-message kg_withdraw_args {
+message withdraw_args {
    bytes account = 1 [(koinos.btype) = ADDRESS];
    uint64 amount = 2 [jstype = JS_STRING];
 }
