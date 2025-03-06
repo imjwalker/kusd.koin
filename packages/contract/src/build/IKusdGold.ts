@@ -84,7 +84,7 @@ export class KusdGold extends Token {
   }
 
   /**
- * Mint kusd.koinos
+ * Mint kusd.koin
  * @external
  */
   kusd_mint(args: empty.mint_args): void {
@@ -114,7 +114,7 @@ export class KusdGold extends Token {
   }
 
   /**
- * Repay kusd.koinos
+ * Repay kusd.koin
  * @external
  */
   repay(args: empty.repay_args): void {

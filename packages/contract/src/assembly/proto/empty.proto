@@ -43,8 +43,6 @@ enum direction {
 message deposit_args {
    bytes account = 1 [(koinos.btype) = ADDRESS];
    uint64 amount = 2 [jstype = JS_STRING];
-   uint32 fee = 3;
-   bytes fee_address = 4 [(koinos.btype) = ADDRESS];
 }
 
 message withdraw_args {

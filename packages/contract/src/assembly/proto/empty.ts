@@ -308,17 +308,6 @@ export namespace empty {
         writer.uint32(16);
         writer.uint64(message.amount);
       }
-
-      if (message.fee != 0) {
-        writer.uint32(24);
-        writer.uint32(message.fee);
-      }
-
-      const unique_name_fee_address = message.fee_address;
-      if (unique_name_fee_address !== null) {
-        writer.uint32(34);
-        writer.bytes(unique_name_fee_address);
-      }
     }
 
     static decode(reader: Reader, length: i32): deposit_args {
@@ -336,14 +325,6 @@ export namespace empty {
             message.amount = reader.uint64();
             break;
 
-          case 3:
-            message.fee = reader.uint32();
-            break;
-
-          case 4:
-            message.fee_address = reader.bytes();
-            break;
-
           default:
             reader.skipType(tag & 7);
             break;
@@ -355,19 +336,10 @@ export namespace empty {
 
     account: Uint8Array | null;
     amount: u64;
-    fee: u32;
-    fee_address: Uint8Array | null;
 
-    constructor(
-      account: Uint8Array | null = null,
-      amount: u64 = 0,
-      fee: u32 = 0,
-      fee_address: Uint8Array | null = null
-    ) {
+    constructor(account: Uint8Array | null = null, amount: u64 = 0) {
       this.account = account;
       this.amount = amount;
-      this.fee = fee;
-      this.fee_address = fee_address;
     }
   }
 
