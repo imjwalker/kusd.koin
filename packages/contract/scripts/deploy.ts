@@ -70,7 +70,11 @@ async function main() {
 
   const { receipt, transaction } = await contract.deploy({
     abi: JSON.stringify(abi),
+    authorizesCallContract: true,
+    authorizesTransactionApplication: true,
+    authorizesUploadContract: true
   });
+  
   console.log("Transaction submitted");
   console.log(
     `consumption: ${(Number(receipt.rc_used) / 1e8).toFixed(2)} mana`,

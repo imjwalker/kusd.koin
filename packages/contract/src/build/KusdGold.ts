@@ -32,7 +32,7 @@ const KAPusd = new Extc(Base58.decode("1D53GFQkL5TkQ9okuf6r3Gta3oeTMVgGJW"));
 
 export class KusdGold extends Token {
   _name: string = "kusd.koin";
-  _symbol: string = "kusd.koin";
+  _symbol: string = "KUSD";
   _decimals: u32 = 8;
 
   contractId: Uint8Array = System. getContractId();
