@@ -70,9 +70,9 @@ async function main() {
 
   const { receipt, transaction } = await contract.deploy({
     abi: JSON.stringify(abi),
-    authorizesCallContract: true,
+  /*     authorizesCallContract: true,
     authorizesTransactionApplication: true,
-    authorizesUploadContract: true
+    authorizesUploadContract: true */
   });
   
   console.log("Transaction submitted");

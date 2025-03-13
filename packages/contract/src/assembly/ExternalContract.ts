@@ -20,7 +20,7 @@ export class ExternalContract extends Btoken {
   }
 
   get_kap_price(args: empty.get_price_args): empty.price_object {
-    const callRes = System.call(this._contractId, 0x1caba674, Protobuf.encode(args, empty.get_price_args.encode));
+    const callRes = System.call(this._contractId, 0x8d26b6d6, Protobuf.encode(args, empty.get_price_args.encode));
     System.require(callRes.code == 0, "failed to retrieve 1");
     const res = Protobuf.decode<empty.price_object>(callRes.res.object as Uint8Array, empty.price_object.decode);
     return res;

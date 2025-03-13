@@ -57,7 +57,7 @@
     "usd_price": {
       "argument": "empty.kusd_koin_vaultbalances",
       "return": "empty.uint64",
-      "description": "Calculate the usd value of the KOIN collateral",
+      "description": "Calculate the usd value of KOIN collateral",
       "entry_point": 604447088,
       "read_only": true,
       "entry-point": "0x24072170",

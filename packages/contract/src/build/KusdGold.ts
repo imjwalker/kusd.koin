@@ -6,33 +6,35 @@ import { empty } from "./proto/empty";
 import { ExternalContract as Extc } from "./ExternalContract";
 import { multiplyAndDivide } from "@koinosbox/contracts/assembly/vapor/utils";
 
-const VAULTS_SPACE_ID = 8;
+const VAULTS_SPACE_ID = 1;
 
-// kusd contract address: 166BxNmWGuZHYAVHCeh6D8i7XF5qX21kGT
+// contract address: 19j7QMs8a8vjYAwk732sY5FGqXNCj3ywRo (new)
+//                   166BxNmWGuZHYAVHCeh6D8i7XF5qX21kGT (old)
 
-// testnet koin
-const koinContract = new IToken(Base58.decode("1EdLyQ67LW6HVU1dWoceP4firtyz77e37Y"));
 
-// tesnet KoinDX pool contract placeholder
-const koinUsdt = new Extc(Base58.decode("1JNfiwk1QT4Ao4bu1YrTD7rEiQoTPXKnZ6"));
+// TESTNET CONTRACTS
+/* const koinContract = new IToken(Base58.decode("1EdLyQ67LW6HVU1dWoceP4firtyz77e37Y"));
+
+// tesTnet KoinDX pool contract placeholder
+const KoinUsdt = new Extc(Base58.decode("1JNfiwk1QT4Ao4bu1YrTD7rEiQoTPXKnZ6"));
 
 // testnet KAP USD oracle (MEXC price) placeholder
-const KAPusd = new Extc(Base58.decode("13PXvxWLMyi4dAd6uS1SehNNFryvFyygnD"));
+const KAPusd = new Extc(Base58.decode("13PXvxWLMyi4dAd6uS1SehNNFryvFyygnD")); */
 
-/* 
+
 // MAINNET CONTRACTS
 const koinContract = new IToken(Base58.decode("15DJN4a8SgrbGhhGksSBASiSYjGnMU8dGL"));
 
-// KoinDX contract
-const koinUsdt = new Etc(Base58.decode("1M9VoAHN3MdvwHnUotgk8GBVjCnXYepWbk"));
+// KoinDX KOIN/USDT contract
+const KoinUsdt = new Extc(Base58.decode("1M9VoAHN3MdvwHnUotgk8GBVjCnXYepWbk"));
 
 // KAP USD oracle (MEXC price)
 const KAPusd = new Extc(Base58.decode("1D53GFQkL5TkQ9okuf6r3Gta3oeTMVgGJW"));
- */
+
 
 export class KusdGold extends Token {
   _name: string = "kusd.koin";
-  _symbol: string = "KUSD";
+  _symbol: string = "kusd.koin";
   _decimals: u32 = 8;
 
   contractId: Uint8Array = System. getContractId();
@@ -87,15 +89,20 @@ export class KusdGold extends Token {
     if (!authorized) System.fail("not authorized by the user");
     
     const cSigner = args.account!;
-    const fee_amount: u64 = multiplyAndDivide(args.amount, 5, 1000); // Fee is 0.5%
+    const fee_amount: u64 = 0; // Currently 0, will be set to 0.5% at launch
+    // const fee_amount: u64 = multiplyAndDivide(args.amount, 5, 1000); // Fee is 0.5%
     const toDeposit: u64 = args.amount - fee_amount;
-    const fee_address = Base58.decode("1Mzp89UMsSh6Fiy4ZEVvTKsmxUYpoJ3emH");
+    const fee_address = Base58.decode("1JgBdWpX2N2FybJMUHjhYrCd2pZyEVQBxv");
     let vaultBalance: empty.kusd_koin_vaultbalances = this.kusd_koin_vaults.get(cSigner)!;
 
-    koinContract.transfer(new token.transfer_args(cSigner, this.contractId, toDeposit));
-    vaultBalance.koin += toDeposit;
-    koinContract.transfer(new token.transfer_args(cSigner, fee_address, fee_amount));
-    this.kusd_koin_vaults.put(cSigner, vaultBalance);
+    if (args.amount <= koinContract.balance_of(new token.balance_of_args(args.account)).value) {
+      koinContract.transfer(new token.transfer_args(cSigner, this.contractId, toDeposit));
+      koinContract.transfer(new token.transfer_args(cSigner, fee_address, fee_amount));
+      vaultBalance.koin += toDeposit;
+      this.kusd_koin_vaults.put(cSigner, vaultBalance);
+    } else {
+      System.fail("Not enough balance");
+    }
   }
 
   /**
@@ -139,30 +146,24 @@ export class KusdGold extends Token {
     let vaultBalance = this.kusd_koin_vaults.get(cSigner)!;
 
     if (multiplyAndDivide(args.amount + vaultBalance.kusd_koin, 150, 100) <= this.usd_price(vaultBalance).value) {
+      this._mint(new token.mint_args(cSigner, args.amount));
       vaultBalance.kusd_koin += args.amount;
       this.kusd_koin_vaults.put(cSigner, vaultBalance);
-      this._mint(new token.mint_args(cSigner, args.amount));
-      
     } else {
       System.fail("Exceeds mint limit");
     }
   }
 
   /**
-   * Calculate the usd value of the KOIN collateral
+   * Calculate the usd value of KOIN collateral
    * @external
    * @readonly
    */
   usd_price(args: empty.kusd_koin_vaultbalances): empty.uint64 {
 
-    // On mainnet, compare the KOINDX price with the KAP USD oracle price and use the highest one
-    // On testnet just use a placeholder price object
-
-    const KAP_price: u64 = this.get_KAP_price().price; // price is 0.168 atm
-    // const KOINDX_price: u64 = multiplyAndDivide(koinUsdt.ratio().token_b, 100000000, koinUsdt.ratio().token_a);
-    // (KAP_price > KOINDX_price) ? koin_price = KAP_price : koin_price = KOINDX_price;
-
-    let koin_price: u64 = KAP_price;
+    const KAP_price: u64 = this.get_KAP_price().price;
+    const KOINDX_price: u64 = multiplyAndDivide(KoinUsdt.ratio().token_b, 100000000, KoinUsdt.ratio().token_a);
+    const koin_price: u64 = (KAP_price > KOINDX_price) ? KAP_price : KOINDX_price;
 
     return new empty.uint64(multiplyAndDivide(args.koin, koin_price, 100000000));
   }
@@ -180,9 +181,9 @@ export class KusdGold extends Token {
     let vaultBalance = this.kusd_koin_vaults.get(cSigner)!;
 
     if (args.amount <= vaultBalance.kusd_koin) {
+      this._burn(new token.burn_args(cSigner, args.amount));
       vaultBalance.kusd_koin -= args.amount;
       this.kusd_koin_vaults.put(cSigner, vaultBalance);
-      this._burn(new token.burn_args(cSigner, args.amount));
     } else {
       System.fail("Exceeds the maximum amount which can be repaid");
     }
@@ -204,7 +205,6 @@ export class KusdGold extends Token {
     const vb = this.kusd_koin_vaults.get(args.vault!)!;
     let vaultBalance: empty.kusd_koin_vaultbalances = this.kusd_koin_vaults.get(args.account!)!;
 
-    // a minimum collateralization ratio of 150% is required
     if (multiplyAndDivide(vb.kusd_koin, 150, 100) > this.usd_price(vb).value) {
       vaultBalance.koin += vb.koin;
       vaultBalance.kusd_koin += vb.kusd_koin;
@@ -221,6 +221,6 @@ export class KusdGold extends Token {
    * @readonly
    */
   get_KAP_price(): empty.price_object {
-    return KAPusd.get_kap_price(new empty.get_price_args(Base58.decode("1Mzp89UMsSh6Fiy4ZEVvTKsmxUYpoJ3emH"))); 
+    return KAPusd.get_kap_price(new empty.get_price_args(Base58.decode("15DJN4a8SgrbGhhGksSBASiSYjGnMU8dGL"))); 
   }
 }

@@ -98,7 +98,7 @@ export class KusdGold extends Token {
   }
 
   /**
-   * Calculate the usd value of the KOIN collateral
+   * Calculate the usd value of KOIN collateral
    * @external
    * @readonly
    */
