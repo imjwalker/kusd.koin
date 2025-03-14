@@ -81,51 +81,6 @@
       "entry-point": "0xbcd6cc74",
       "read-only": false
     },
-    "get_KAP_price": {
-      "argument": "",
-      "return": "empty.price_object",
-      "description": "Get KAP price oracle for KOIN price",
-      "entry_point": 69476731,
-      "read_only": true,
-      "entry-point": "0x0424217b",
-      "read-only": true
-    },
-    "name": {
-      "argument": "",
-      "return": "token.str",
-      "description": "Get name of the token",
-      "entry_point": 2191741823,
-      "read_only": true,
-      "entry-point": "0x82a3537f",
-      "read-only": true
-    },
-    "symbol": {
-      "argument": "",
-      "return": "token.str",
-      "description": "Get the symbol of the token",
-      "entry_point": 3077209249,
-      "read_only": true,
-      "entry-point": "0xb76a7ca1",
-      "read-only": true
-    },
-    "decimals": {
-      "argument": "",
-      "return": "token.uint32",
-      "description": "Get the decimals of the token",
-      "entry_point": 4001430831,
-      "read_only": true,
-      "entry-point": "0xee80fd2f",
-      "read-only": true
-    },
-    "get_info": {
-      "argument": "",
-      "return": "token.info",
-      "description": "Get name, symbol and decimals",
-      "entry_point": 3179243600,
-      "read_only": true,
-      "entry-point": "0xbd7f6850",
-      "read-only": true
-    },
     "total_supply": {
       "argument": "",
       "return": "token.uint64",
@@ -143,54 +98,9 @@
       "read_only": true,
       "entry-point": "0x5c721497",
       "read-only": true
-    },
-    "allowance": {
-      "argument": "token.allowance_args",
-      "return": "token.uint64",
-      "description": "Get allowance",
-      "entry_point": 854630305,
-      "read_only": true,
-      "entry-point": "0x32f09fa1",
-      "read-only": true
-    },
-    "get_allowances": {
-      "argument": "token.get_allowances_args",
-      "return": "token.get_allowances_return",
-      "description": "Get allowances of an account",
-      "entry_point": 2409718870,
-      "read_only": true,
-      "entry-point": "0x8fa16456",
-      "read-only": true
-    },
-    "approve": {
-      "argument": "token.approve_args",
-      "return": "",
-      "description": "Grant permissions to other account to manage the tokens owned by the user. The user must approve only the accounts he trust.",
-      "entry_point": 1960973952,
-      "read_only": false,
-      "entry-point": "0x74e21680",
-      "read-only": false
-    },
-    "transfer": {
-      "argument": "token.transfer_args",
-      "return": "",
-      "description": "Transfer tokens",
-      "entry_point": 670398154,
-      "read_only": false,
-      "entry-point": "0x27f576ca",
-      "read-only": false
-    },
-    "mint": {
-      "argument": "token.mint_args",
-      "return": "",
-      "description": "Mint new tokens",
-      "entry_point": 3698268091,
-      "read_only": false,
-      "entry-point": "0xdc6f17bb",
-      "read-only": false
     }
   },
-  "types": "CqIJCgtlbXB0eS5wcm90bxIFZW1wdHkaFGtvaW5vcy9vcHRpb25zLnByb3RvIhsKA3N0chIUCgV2YWx1ZRgBIAEoCVIFdmFsdWUiHgoGdWludDY0EhQKBXZhbHVlGAEgASgEUgV2YWx1ZSJSChdrdXNkX2tvaW5fdmF1bHRiYWxhbmNlcxIWCgRrb2luGAEgASgEQgIwAVIEa29pbhIfCglrdXNkX2tvaW4YAiABKARCAjABUghrdXNkS29pbiJPChtrdXNkX2tvaW5fcHJvdG9jb2xfYmFsYW5jZXMSMAoDa3ZiGAEgAygLMh4uZW1wdHkua3VzZF9rb2luX3ZhdWx0YmFsYW5jZXNSA2t2YiIsCg5nZXRfdmF1bHRfYXJncxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXIibQoJbGlzdF9hcmdzEhoKBXN0YXJ0GAEgASgMQgSAtRgGUgVzdGFydBIUCgVsaW1pdBgCIAEoBVIFbGltaXQSLgoJZGlyZWN0aW9uGAMgASgOMhAuZW1wdHkuZGlyZWN0aW9uUglkaXJlY3Rpb24iLQoJYWRkcmVzc2VzEiAKCGFjY291bnRzGAEgAygMQgSAtRgGUghhY2NvdW50cyJKCgxkZXBvc2l0X2FyZ3MSHgoHYWNjb3VudBgBIAEoDEIEgLUYBlIHYWNjb3VudBIaCgZhbW91bnQYAiABKARCAjABUgZhbW91bnQiSwoNd2l0aGRyYXdfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBmFtb3VudBgCIAEoBEICMAFSBmFtb3VudCJHCgltaW50X2FyZ3MSHgoHYWNjb3VudBgBIAEoDEIEgLUYBlIHYWNjb3VudBIaCgZhbW91bnQYAiABKARCAjABUgZhbW91bnQiSAoKcmVwYXlfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBmFtb3VudBgCIAEoBEICMAFSBmFtb3VudCJMCg5saXF1aWRhdGVfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBXZhdWx0GAIgASgMQgSAtRgGUgV2YXVsdCIMCgpyYXRpb19hcmdzIoIBCgxyYXRpb19yZXN1bHQSFQoGa19sYXN0GAEgASgJUgVrTGFzdBIbCgd0b2tlbl9hGAIgASgEQgIwAVIGdG9rZW5BEhsKB3Rva2VuX2IYAyABKARCAjABUgZ0b2tlbkISIQoKYmxvY2tfdGltZRgEIAEoBEICMAFSCWJsb2NrVGltZSI7Cg5nZXRfcHJpY2VfYXJncxIpCg10b2tlbl9hZGRyZXNzGAEgASgMQgSAtRgFUgx0b2tlbkFkZHJlc3MiSgoMcHJpY2Vfb2JqZWN0EhgKBXByaWNlGAEgASgEQgIwAVIFcHJpY2USIAoJdGltZXN0YW1wGAIgASgEQgIwAVIJdGltZXN0YW1wKioKCWRpcmVjdGlvbhINCglhc2NlbmRpbmcQABIOCgpkZXNjZW5kaW5nEAFiBnByb3RvMwqJCwoha29pbm9zYm94LXByb3RvL3Rva2VuL3Rva2VuLnByb3RvEgV0b2tlbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSJwCgRpbmZvEhIKBG5hbWUYASABKAlSBG5hbWUSFgoGc3ltYm9sGAIgASgJUgZzeW1ib2wSGgoIZGVjaW1hbHMYAyABKA1SCGRlY2ltYWxzEiAKC2Rlc2NyaXB0aW9uGAQgASgJUgtkZXNjcmlwdGlvbiItCg9iYWxhbmNlX29mX2FyZ3MSGgoFb3duZXIYASABKAxCBIC1GAZSBW93bmVyIm0KDXRyYW5zZmVyX2FyZ3MSGAoEZnJvbRgBIAEoDEIEgLUYBlIEZnJvbRIUCgJ0bxgCIAEoDEIEgLUYBlICdG8SGAoFdmFsdWUYAyABKARCAjABUgV2YWx1ZRISCgRtZW1vGAQgASgJUgRtZW1vIjsKCW1pbnRfYXJncxIUCgJ0bxgBIAEoDEIEgLUYBlICdG8SGAoFdmFsdWUYAiABKARCAjABUgV2YWx1ZSI/CglidXJuX2FyZ3MSGAoEZnJvbRgBIAEoDEIEgLUYBlIEZnJvbRIYCgV2YWx1ZRgCIAEoBEICMAFSBXZhbHVlImQKDGFwcHJvdmVfYXJncxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISHgoHc3BlbmRlchgCIAEoDEIEgLUYBlIHc3BlbmRlchIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlIkwKDmFsbG93YW5jZV9hcmdzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIeCgdzcGVuZGVyGAIgASgMQgSAtRgGUgdzcGVuZGVyIoMBChNnZXRfYWxsb3dhbmNlc19hcmdzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIaCgVzdGFydBgCIAEoDEIEgLUYBlIFc3RhcnQSFAoFbGltaXQYAyABKAVSBWxpbWl0Eh4KCmRlc2NlbmRpbmcYBCABKAhSCmRlc2NlbmRpbmciSQoNc3BlbmRlcl92YWx1ZRIeCgdzcGVuZGVyGAEgASgMQgSAtRgGUgdzcGVuZGVyEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiaQoVZ2V0X2FsbG93YW5jZXNfcmV0dXJuEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchI0CgphbGxvd2FuY2VzGAIgAygLMhQudG9rZW4uc3BlbmRlcl92YWx1ZVIKYWxsb3dhbmNlcyJaCg50cmFuc2Zlcl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhQKAnRvGAIgASgMQgSAtRgGUgJ0bxIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlIjwKCm1pbnRfZXZlbnQSFAoCdG8YASABKAxCBIC1GAZSAnRvEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiQAoKYnVybl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiZQoNYXBwcm92ZV9ldmVudBIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISHgoHc3BlbmRlchgCIAEoDEIEgLUYBlIHc3BlbmRlchIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlYgZwcm90bzM=",
+  "types": "CqIJCgtlbXB0eS5wcm90bxIFZW1wdHkaFGtvaW5vcy9vcHRpb25zLnByb3RvIhsKA3N0chIUCgV2YWx1ZRgBIAEoCVIFdmFsdWUiHgoGdWludDY0EhQKBXZhbHVlGAEgASgEUgV2YWx1ZSJSChdrdXNkX2tvaW5fdmF1bHRiYWxhbmNlcxIfCglrdXNkX2tvaW4YASABKARCAjABUghrdXNkS29pbhIWCgRrb2luGAIgASgEQgIwAVIEa29pbiJPChtrdXNkX2tvaW5fcHJvdG9jb2xfYmFsYW5jZXMSMAoDa3ZiGAEgAygLMh4uZW1wdHkua3VzZF9rb2luX3ZhdWx0YmFsYW5jZXNSA2t2YiIsCg5nZXRfdmF1bHRfYXJncxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXIibQoJbGlzdF9hcmdzEhoKBXN0YXJ0GAEgASgMQgSAtRgGUgVzdGFydBIUCgVsaW1pdBgCIAEoBVIFbGltaXQSLgoJZGlyZWN0aW9uGAMgASgOMhAuZW1wdHkuZGlyZWN0aW9uUglkaXJlY3Rpb24iLQoJYWRkcmVzc2VzEiAKCGFjY291bnRzGAEgAygMQgSAtRgGUghhY2NvdW50cyJKCgxkZXBvc2l0X2FyZ3MSHgoHYWNjb3VudBgBIAEoDEIEgLUYBlIHYWNjb3VudBIaCgZhbW91bnQYAiABKARCAjABUgZhbW91bnQiSwoNd2l0aGRyYXdfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBmFtb3VudBgCIAEoBEICMAFSBmFtb3VudCJHCgltaW50X2FyZ3MSHgoHYWNjb3VudBgBIAEoDEIEgLUYBlIHYWNjb3VudBIaCgZhbW91bnQYAiABKARCAjABUgZhbW91bnQiSAoKcmVwYXlfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBmFtb3VudBgCIAEoBEICMAFSBmFtb3VudCJMCg5saXF1aWRhdGVfYXJncxIeCgdhY2NvdW50GAEgASgMQgSAtRgGUgdhY2NvdW50EhoKBXZhdWx0GAIgASgMQgSAtRgGUgV2YXVsdCIMCgpyYXRpb19hcmdzIoIBCgxyYXRpb19yZXN1bHQSFQoGa19sYXN0GAEgASgJUgVrTGFzdBIbCgd0b2tlbl9hGAIgASgEQgIwAVIGdG9rZW5BEhsKB3Rva2VuX2IYAyABKARCAjABUgZ0b2tlbkISIQoKYmxvY2tfdGltZRgEIAEoBEICMAFSCWJsb2NrVGltZSI7Cg5nZXRfcHJpY2VfYXJncxIpCg10b2tlbl9hZGRyZXNzGAEgASgMQgSAtRgFUgx0b2tlbkFkZHJlc3MiSgoMcHJpY2Vfb2JqZWN0EhgKBXByaWNlGAEgASgEQgIwAVIFcHJpY2USIAoJdGltZXN0YW1wGAIgASgEQgIwAVIJdGltZXN0YW1wKioKCWRpcmVjdGlvbhINCglhc2NlbmRpbmcQABIOCgpkZXNjZW5kaW5nEAFiBnByb3RvMwqJCwoha29pbm9zYm94LXByb3RvL3Rva2VuL3Rva2VuLnByb3RvEgV0b2tlbhoUa29pbm9zL29wdGlvbnMucHJvdG8iGwoDc3RyEhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIeCgZ1aW50MzISFAoFdmFsdWUYASABKA1SBXZhbHVlIiIKBnVpbnQ2NBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIh0KBWJvb2xlEhQKBXZhbHVlGAEgASgIUgV2YWx1ZSJwCgRpbmZvEhIKBG5hbWUYASABKAlSBG5hbWUSFgoGc3ltYm9sGAIgASgJUgZzeW1ib2wSGgoIZGVjaW1hbHMYAyABKA1SCGRlY2ltYWxzEiAKC2Rlc2NyaXB0aW9uGAQgASgJUgtkZXNjcmlwdGlvbiItCg9iYWxhbmNlX29mX2FyZ3MSGgoFb3duZXIYASABKAxCBIC1GAZSBW93bmVyIm0KDXRyYW5zZmVyX2FyZ3MSGAoEZnJvbRgBIAEoDEIEgLUYBlIEZnJvbRIUCgJ0bxgCIAEoDEIEgLUYBlICdG8SGAoFdmFsdWUYAyABKARCAjABUgV2YWx1ZRISCgRtZW1vGAQgASgJUgRtZW1vIjsKCW1pbnRfYXJncxIUCgJ0bxgBIAEoDEIEgLUYBlICdG8SGAoFdmFsdWUYAiABKARCAjABUgV2YWx1ZSI/CglidXJuX2FyZ3MSGAoEZnJvbRgBIAEoDEIEgLUYBlIEZnJvbRIYCgV2YWx1ZRgCIAEoBEICMAFSBXZhbHVlImQKDGFwcHJvdmVfYXJncxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISHgoHc3BlbmRlchgCIAEoDEIEgLUYBlIHc3BlbmRlchIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlIkwKDmFsbG93YW5jZV9hcmdzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIeCgdzcGVuZGVyGAIgASgMQgSAtRgGUgdzcGVuZGVyIoMBChNnZXRfYWxsb3dhbmNlc19hcmdzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIaCgVzdGFydBgCIAEoDEIEgLUYBlIFc3RhcnQSFAoFbGltaXQYAyABKAVSBWxpbWl0Eh4KCmRlc2NlbmRpbmcYBCABKAhSCmRlc2NlbmRpbmciSQoNc3BlbmRlcl92YWx1ZRIeCgdzcGVuZGVyGAEgASgMQgSAtRgGUgdzcGVuZGVyEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiaQoVZ2V0X2FsbG93YW5jZXNfcmV0dXJuEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchI0CgphbGxvd2FuY2VzGAIgAygLMhQudG9rZW4uc3BlbmRlcl92YWx1ZVIKYWxsb3dhbmNlcyJaCg50cmFuc2Zlcl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhQKAnRvGAIgASgMQgSAtRgGUgJ0bxIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlIjwKCm1pbnRfZXZlbnQSFAoCdG8YASABKAxCBIC1GAZSAnRvEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiQAoKYnVybl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEhgKBXZhbHVlGAIgASgEQgIwAVIFdmFsdWUiZQoNYXBwcm92ZV9ldmVudBIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISHgoHc3BlbmRlchgCIAEoDEIEgLUYBlIHc3BlbmRlchIYCgV2YWx1ZRgDIAEoBEICMAFSBXZhbHVlYgZwcm90bzM=",
   "koilib_types": {
     "nested": {
       "empty": {
@@ -213,14 +123,14 @@
           },
           "kusd_koin_vaultbalances": {
             "fields": {
-              "koin": {
+              "kusd_koin": {
                 "type": "uint64",
                 "id": 1,
                 "options": {
                   "jstype": "JS_STRING"
                 }
               },
-              "kusd_koin": {
+              "koin": {
                 "type": "uint64",
                 "id": 2,
                 "options": {

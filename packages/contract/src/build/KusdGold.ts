@@ -6,10 +6,10 @@ import { empty } from "./proto/empty";
 import { ExternalContract as Extc } from "./ExternalContract";
 import { multiplyAndDivide } from "@koinosbox/contracts/assembly/vapor/utils";
 
-const VAULTS_SPACE_ID = 1;
+const VAULTS_SPACE_ID = 2;
 
-// contract address: 19j7QMs8a8vjYAwk732sY5FGqXNCj3ywRo (new)
-//                   166BxNmWGuZHYAVHCeh6D8i7XF5qX21kGT (old)
+// contract address:  1HUwtrx1jFFmfk3jsosUK4588RsX2uLETC (mainnet)
+//                    19j7QMs8a8vjYAwk732sY5FGqXNCj3ywRo (harbinger)
 
 
 // TESTNET CONTRACTS
@@ -34,7 +34,7 @@ const KAPusd = new Extc(Base58.decode("1D53GFQkL5TkQ9okuf6r3Gta3oeTMVgGJW"));
 
 export class KusdGold extends Token {
   _name: string = "kusd.koin";
-  _symbol: string = "kusd.koin";
+  _symbol: string = "KUSD";
   _decimals: u32 = 8;
 
   contractId: Uint8Array = System. getContractId();
@@ -217,8 +217,6 @@ export class KusdGold extends Token {
 
   /**
    * Get KAP price oracle for KOIN price
-   * @external
-   * @readonly
    */
   get_KAP_price(): empty.price_object {
     return KAPusd.get_kap_price(new empty.get_price_args(Base58.decode("15DJN4a8SgrbGhhGksSBASiSYjGnMU8dGL"))); 

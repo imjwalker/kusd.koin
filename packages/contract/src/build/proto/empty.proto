@@ -13,8 +13,8 @@ message uint64 {
 }
 
 message kusd_koin_vaultbalances {
-   uint64 koin = 1 [jstype = JS_STRING];
-   uint64 kusd_koin = 2 [jstype = JS_STRING];
+   uint64 kusd_koin = 1 [jstype = JS_STRING];
+   uint64 koin = 2 [jstype = JS_STRING];
 }
 
 message kusd_koin_protocol_balances {

@@ -76,14 +76,14 @@ export namespace empty {
   @unmanaged
   export class kusd_koin_vaultbalances {
     static encode(message: kusd_koin_vaultbalances, writer: Writer): void {
-      if (message.koin != 0) {
+      if (message.kusd_koin != 0) {
         writer.uint32(8);
-        writer.uint64(message.koin);
+        writer.uint64(message.kusd_koin);
       }
 
-      if (message.kusd_koin != 0) {
+      if (message.koin != 0) {
         writer.uint32(16);
-        writer.uint64(message.kusd_koin);
+        writer.uint64(message.koin);
       }
     }
 
@@ -95,11 +95,11 @@ export namespace empty {
         const tag = reader.uint32();
         switch (tag >>> 3) {
           case 1:
-            message.koin = reader.uint64();
+            message.kusd_koin = reader.uint64();
             break;
 
           case 2:
-            message.kusd_koin = reader.uint64();
+            message.koin = reader.uint64();
             break;
 
           default:
@@ -111,12 +111,12 @@ export namespace empty {
       return message;
     }
 
-    koin: u64;
     kusd_koin: u64;
+    koin: u64;
 
-    constructor(koin: u64 = 0, kusd_koin: u64 = 0) {
-      this.koin = koin;
+    constructor(kusd_koin: u64 = 0, koin: u64 = 0) {
       this.kusd_koin = kusd_koin;
+      this.koin = koin;
     }
   }
 
